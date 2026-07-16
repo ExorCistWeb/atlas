@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AtlasAI — персональный ИИ-наставник для подготовки к ЕГЭ: диагностика, карта знаний и разбор ошибок.">
+  <title>AtlasAI — персональный ИИ-наставник для ЕГЭ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="loading-screen"><div class="loading-brand"><span class="logo__mark">⌘</span><span>AtlasAI</span></div></div>
+  <main class="landing">
+    <section class="hero">
+      <header class="site-header">
+        <div class="container site-header__inner">
+          <a class="logo logo--inverse" href="index.html"><span class="logo__mark">⌘</span><span>Atlas<span>AI</span></span></a>
+          <nav id="main-nav" aria-label="Основная навигация">
+            <a href="#how">Как это работает</a><a href="#features">Возможности</a><a href="#parents">Родителям</a><a href="pricing.html">Тарифы</a>
+          </nav>
+          <div class="site-header__actions"><a class="header-login" href="login.html">Войти</a><a class="button button--primary" href="register.html">Начать бесплатно <span>→</span></a></div>
+          <button type="button" class="menu-button" data-menu aria-label="Открыть меню">☰</button>
+        </div>
+      </header>
+      <div class="hero__orb hero__orb--one"></div><div class="hero__orb hero__orb--two"></div>
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <div class="eyebrow"><span>✦</span> Первый ИИ-наставник, который ищет причину</div>
+          <h1>Твой персональный путь к <span>нужному баллу</span></h1>
+          <p>AtlasAI определяет слабые места, объясняет ошибки и каждый день выбирает задания, которые быстрее всего приближают тебя к цели.</p>
+          <div class="hero__buttons"><a class="button button--primary" href="register.html">Пройти диагностику <span>→</span></a><a class="button button--ghost" href="dashboard.html"><span>▶</span> Посмотреть кабинет</a></div>
+          <div class="hero__note"><span>✓</span> Первые 15 заданий бесплатно <i></i> Без привязки карты</div>
+        </div>
+        <div class="hero-product">
+          <div class="hero-product__top"><div><span class="online-dot"></span> Карта знаний обновлена</div><span>Профильная математика</span></div>
+          <div class="knowledge knowledge--compact">
+            <div class="knowledge__glow knowledge__glow--one"></div><div class="knowledge__glow knowledge__glow--two"></div>
+            <svg class="knowledge__lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M16 27 L39 18 L63 29 L79 56 L55 66 L30 62 L16 27 M39 18 L55 66 M63 29 L55 66 M30 62 L39 18"/></svg>
+            <button type="button" class="knowledge-node knowledge-node--green" style="left:16%;top:27%;width:65px;height:65px"><b>88%</b><span>Уравнения</span></button>
+            <button type="button" class="knowledge-node knowledge-node--green" style="left:39%;top:18%;width:75px;height:75px"><b>71%</b><span>Функции</span></button>
+            <button type="button" class="knowledge-node knowledge-node--yellow" style="left:63%;top:29%;width:66px;height:66px"><b>58%</b><span>Производная</span></button>
+            <button type="button" class="knowledge-node knowledge-node--red" style="left:30%;top:62%;width:82px;height:82px"><b>34%</b><span>Планиметрия</span></button>
+            <button type="button" class="knowledge-node knowledge-node--red" style="left:55%;top:66%;width:78px;height:78px"><b>26%</b><span>Подобие</span></button>
+            <button type="button" class="knowledge-node knowledge-node--yellow" style="left:79%;top:56%;width:69px;height:69px"><b>64%</b><span>Вероятность</span></button>
+            <div class="knowledge__tag">✦ ИИ нашёл первопричину</div>
+          </div>
+          <div class="ai-toast"><span>⌘</span><div><b>Нашёл основную причину</b><p>Подобие треугольников влияет ещё на 5 типов задач</p></div><span>›</span></div>
+          <div class="score-pill"><small>Прогноз ЕГЭ</small><strong>68 → 74</strong><span>+6 баллов</span></div>
+        </div>
+      </div>
+      <div class="container trust-row"><span>Один маршрут вместо хаоса</span><div>◇ Безопасные объяснения</div><div>◷ От 15 минут в день</div><div>◎ План до нужного балла</div></div>
+    </section>
+
+    <section class="section section--light" id="how"><div class="container">
+      <div class="section-heading"><div><span class="section-kicker">Система подготовки</span><h2>Не больше заданий.<br><span>Более точные задания.</span></h2></div><p>Тебе больше не нужно выбирать тему, искать теорию и гадать, что решать дальше. ИИ уже построил маршрут.</p></div>
+      <div class="bento">
+        <article class="bento-card bento-card--large purple-card"><div class="card-number">01</div><span class="feature-icon">⌘</span><h3>Находим причину,<br>а не просто ошибку</h3><p>AtlasAI анализирует ход решения и определяет, чего именно не хватает: формулы, базовой темы или внимательности.</p><div class="reason-demo"><div class="reason-demo__wrong">− Ты потерял знак при переносе</div><div class="reason-demo__right">✓ Формулу ты знаешь правильно</div></div></article>
+        <article class="bento-card"><div class="card-number">02</div><span class="feature-icon blue">⌁</span><h3>Строим короткий маршрут</h3><p>Каждый следующий шаг зависит от твоих ответов, скорости и истории повторений.</p><div class="mini-route"><span class="done">✓</span><i></i><span class="active">2</span><i></i><span>3</span><i></i><span>4</span></div></article>
+        <article class="bento-card"><div class="card-number">03</div><span class="feature-icon green">↗</span><h3>Показываем рост баллов</h3><p>Не абстрактный процент знаний, а понятный прогноз и темы, которые дадут максимальный прирост.</p><div class="score-chart"><div><small>Сейчас</small><strong>68</strong></div><svg viewBox="0 0 200 70"><path d="M4 61 C35 62 42 44 72 48 S110 28 132 34 S166 10 196 7"/></svg><div><small>Цель</small><strong>85</strong></div></div></article>
+      </div>
+    </div></section>
+
+    <section class="section product-section" id="features"><div class="container product-grid">
+      <div class="product-copy"><span class="section-kicker">План на сегодня</span><h2>Открыл — и сразу понятно, <span>что делать дальше</span></h2><p>На главном экране только то, что действительно нужно сегодня. План адаптируется, если ты пропустил день, устал или начал двигаться быстрее.</p><ul><li>✓ Учитывает время до экзамена</li><li>✓ Возвращает темы до того, как ты их забудешь</li><li>✓ Не перегружает в сложные дни</li></ul><a class="button button--dark" href="dashboard.html">Открыть демо кабинета →</a></div>
+      <div class="dash-preview"><div class="dash-preview__side"><span class="logo__mark">⌘</span><div><span class="active">⌂</span><span>⌁</span><span>◎</span><span>◌</span></div><span>А</span></div><div class="dash-preview__main"><div class="dash-preview__head"><div><small>Четверг, 16 июля</small><b>Доброе утро, Алексей!</b></div><div><span>🔥 8 дней</span><span class="mini-avatar">А</span></div></div><div class="today-card"><div><span>План на сегодня</span><h4>Продолжим с подобия треугольников</h4><p>Осталось 4 задания · примерно 12 минут</p><div class="today-progress"><i></i><span>43%</span></div></div><button type="button">▶</button></div><div class="dash-mini-grid"><div><span>Прогноз ЕГЭ</span><strong>68 → 74</strong><small>при текущем темпе</small></div><div><span>Серия</span><strong>🔥 8 дней</strong><small>личный рекорд: 12</small></div><div><span>Слабая тема</span><strong>Планиметрия</strong><small>освоено на 34%</small></div></div></div></div>
+    </div></section>
+
+    <section class="section error-section"><div class="container"><div class="center-heading"><span class="section-kicker">Умная обратная связь</span><h2>«Неправильно» — это не объяснение</h2><p>ИИ не выдаёт решение сразу. Он находит сложный шаг и помогает дойти до ответа самостоятельно.</p></div><div class="solver-preview"><div class="solver-preview__task"><span>Задание 6 · Планиметрия</span><h3>Найдите длину стороны BC, если треугольники ABC и ADE подобны.</h3><div class="geometry"><div class="triangle"></div><span class="point-a">A</span><span class="point-b">B</span><span class="point-c">C</span><span class="point-d">D</span><span class="point-e">E</span></div><div class="fake-answer"><span>Твой ответ</span><b>24</b><strong>×</strong></div></div><div class="solver-preview__ai"><div class="ai-head"><span>⌘</span><div><b>AtlasAI</b><small><i></i> анализ завершён</small></div></div><div class="chat-bubble">Формулу ты выбрал правильно. Ошибка появилась при составлении пропорции: соответствующие стороны стоят в разном порядке.</div><div class="chat-question">Какая сторона второго треугольника соответствует стороне BC?</div><div class="quick-actions"><button type="button">Покажи на рисунке</button><button type="button">Объясни проще</button><button type="button">Дай похожий пример</button></div></div></div></div></section>
+
+    <section class="section map-section"><div class="container map-grid"><div class="map-copy"><span class="section-kicker section-kicker--light">Карта знаний</span><h2>Увидь, что на самом деле <span>тянет результат вниз</span></h2><p>Каждая тема связана с другими. Закрывая один фундаментальный пробел, ты сразу повышаешь шанс решить несколько типов заданий.</p><div class="map-stat"><strong>+4–6</strong><span>баллов даст работа<br>с одной первопричиной</span></div><a class="button button--primary" href="map.html">Исследовать карту →</a></div><div class="map-visual-wrap"><div class="knowledge"><div class="knowledge__glow knowledge__glow--one"></div><div class="knowledge__glow knowledge__glow--two"></div><svg class="knowledge__lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M16 27 L39 18 L63 29 L79 56 L55 66 L30 62 L16 27 M39 18 L55 66 M63 29 L55 66 M30 62 L39 18"/></svg><button type="button" class="knowledge-node knowledge-node--green" style="left:16%;top:27%;width:90px;height:90px"><b>88%</b><span>Уравнения</span></button><button type="button" class="knowledge-node knowledge-node--green" style="left:39%;top:18%;width:105px;height:105px"><b>71%</b><span>Функции</span></button><button type="button" class="knowledge-node knowledge-node--yellow" style="left:63%;top:29%;width:92px;height:92px"><b>58%</b><span>Производная</span></button><button type="button" class="knowledge-node knowledge-node--red" style="left:30%;top:62%;width:116px;height:116px"><b>34%</b><span>Планиметрия</span></button><button type="button" class="knowledge-node knowledge-node--red" style="left:55%;top:66%;width:108px;height:108px"><b>26%</b><span>Подобие</span></button><button type="button" class="knowledge-node knowledge-node--yellow" style="left:79%;top:56%;width:96px;height:96px"><b>64%</b><span>Вероятность</span></button><div class="knowledge__tag">✦ ИИ нашёл первопричину</div></div></div></div></section>
+
+    <section class="section parents-section" id="parents"><div class="container parents-grid"><div class="parent-card"><div class="parent-card__top"><div><span class="avatar">А</span><div><b>Прогресс Алексея</b><small>Профильная математика</small></div></div><span class="week">Эта неделя⌄</span></div><div class="parent-score"><div><small>Прогноз</small><strong>68 → 73</strong><span>+5 за неделю</span></div><div class="ring"><b>82%</b><small>плана</small></div></div><div class="parent-message"><span>✦</span><div><b>Главное за неделю</b><p>Алексей не ленится — скорость растёт. Сейчас результат ограничивает планиметрия, ИИ уже добавил её в план.</p></div></div></div><div class="parents-copy"><span class="section-kicker">Для родителей</span><h2>Не оценки, а <span>понятная картина</span></h2><p>Родители видят прогресс, регулярность и реальные причины сложностей — без контроля каждого задания и лишнего давления.</p><ul><li>✓ Еженедельный отчёт на почту</li><li>✓ Прогноз и динамика результата</li><li>✓ Управление подпиской и оплатой</li></ul></div></div></section>
+
+    <section class="section pricing-section" id="pricing"><div class="container"><div class="center-heading"><span class="section-kicker">Тарифы</span><h2>Начни бесплатно.<br>Продолжай, когда увидишь пользу.</h2></div><div class="billing-switch"><button type="button" class="active" data-billing="month">Ежемесячно</button><button type="button" data-billing="year">На год <span>−25%</span></button></div><div class="pricing-grid">
+      <article class="price-card"><div><span class="price-icon">ϟ</span><h3>Старт</h3><p>Чтобы познакомиться с системой</p></div><div class="price"><strong>0 ₽</strong><span>навсегда</span></div><ul><li>✓ Диагностика уровня</li><li>✓ Базовая карта знаний</li><li>✓ 5 заданий в день</li><li>✓ 3 объяснения ИИ в день</li></ul><a class="button button--secondary" href="register.html">Попробовать бесплатно</a></article>
+      <article class="price-card price-card--featured"><span class="popular">Выбирают чаще всего</span><div><span class="price-icon">✦</span><h3>Фокус</h3><p>Полный персональный маршрут</p></div><div class="price"><strong data-month="990 ₽" data-year="749 ₽">990 ₽</strong><span>в месяц</span></div><ul><li>✓ Всё из тарифа «Старт»</li><li>✓ Неограниченная практика</li><li>✓ Персональные объяснения ИИ</li><li>✓ Прогноз результата</li><li>✓ Пробные экзамены</li></ul><a class="button button--primary" href="register.html">Начать 7 дней бесплатно</a></article>
+      <article class="price-card"><div><span class="price-icon">♛</span><h3>Максимум</h3><p>Для интенсивной подготовки</p></div><div class="price"><strong data-month="1 690 ₽" data-year="1 290 ₽">1 690 ₽</strong><span>в месяц</span></div><ul><li>✓ Всё из тарифа «Фокус»</li><li>✓ Голосовой ИИ-наставник</li><li>✓ Проверка фото решений</li><li>✓ Расширенная аналитика</li><li>✓ Приоритетная поддержка</li></ul><a class="button button--secondary" href="register.html">Выбрать тариф</a></article>
+    </div></div></section>
+
+    <section class="section faq-section"><div class="container faq-grid"><div><span class="section-kicker">Вопросы и ответы</span><h2>Всё важное<br>перед стартом</h2><p>Не нашли ответа? Напишите нам — ответим без скриптов и сложных терминов.</p><a href="mailto:hello@atlas-ai.ru">hello@atlas-ai.ru →</a></div><div class="faq-list">
+      <button type="button" class="faq-item is-open"><span><b>ИИ может ошибиться при проверке задания?</b><i>−</i></span><span class="faq-answer">Ответ сначала сверяется с эталонными правилами и критериями задания. ИИ отвечает за понятное объяснение, а не придумывает правильный результат.</span></button>
+      <button type="button" class="faq-item"><span><b>Какие предметы доступны?</b><i>+</i></span><span class="faq-answer">В первой версии доступна профильная математика. Русский язык и информатика будут добавлены следующими.</span></button>
+      <button type="button" class="faq-item"><span><b>Сколько времени нужно заниматься?</b><i>+</i></span><span class="faq-answer">Обычно достаточно 15–30 минут в день. План автоматически учитывает дату экзамена, цель и свободное время.</span></button>
+      <button type="button" class="faq-item"><span><b>Можно ли отменить подписку?</b><i>+</i></span><span class="faq-answer">Да, автопродление отключается в личном кабинете в любой момент. Доступ сохранится до конца оплаченного периода.</span></button>
+    </div></div></section>
+
+    <section class="cta-section"><div class="container cta-box"><div class="cta-glow"></div><div><span class="section-kicker section-kicker--light">Твоя точка старта</span><h2>Узнай, какие темы прямо сейчас мешают тебе набрать больше</h2><p>15 адаптивных заданий · около 20 минут · персональная карта сразу после диагностики</p></div><a class="button button--primary" href="register.html">Начать бесплатно →</a></div></section>
+    <footer><div class="container footer-grid"><div><a class="logo" href="index.html"><span class="logo__mark">⌘</span><span>Atlas<span>AI</span></span></a><p>Персональный ИИ-наставник для подготовки к ЕГЭ.</p></div><div><b>Продукт</b><a href="#how">Как работает</a><a href="pricing.html">Тарифы</a><a href="#parents">Родителям</a></div><div><b>Поддержка</b><a href="mailto:hello@atlas-ai.ru">Написать нам</a><a href="#">База знаний</a><a href="#">Документы</a></div><div><b>Мы на связи</b><a href="mailto:hello@atlas-ai.ru">hello@atlas-ai.ru</a><span>Ежедневно, 09:00–21:00 МСК</span></div></div><div class="container footer-bottom"><span>© 2026 AtlasAI. Все права защищены.</span><span>Образовательная платформа не является официальным ресурсом ФИПИ.</span></div></footer>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
