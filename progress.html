@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Подробная динамика подготовки ученика в Стэди: прогноз ЕГЭ, освоенные темы, точность и регулярность занятий.">
+  <meta name="theme-color" content="#1e0d47">
+  <title>Твой прогресс — Стэди</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="steady.css">
+</head>
+<body class="steady-app-body">
+  <main class="student-app" data-progress-page>
+    <aside class="app-sidebar" aria-label="Навигация кабинета"></aside>
+
+    <section class="app-content">
+      <header class="app-top">
+        <div><a class="mobile-app-logo" href="index.html">{</a><span>Твой прогресс</span></div>
+        <div class="app-top__actions">
+          <button type="button" class="streak"><span data-icon="flame"></span> 12 дней</button>
+          <button type="button" data-balance><span data-icon="wallet"></span><span data-balance-value>350 ₽</span></button>
+          <button type="button" data-notifications aria-label="Уведомления"><span data-icon="bell"></span><i></i></button>
+          <button type="button" class="top-avatar" data-profile-toggle aria-label="Открыть меню профиля">АА</button>
+        </div>
+      </header>
+
+      <div class="progress-page">
+        <header class="progress-page__head">
+          <div>
+            <span class="section-kicker">Аналитика подготовки</span>
+            <h1>Твой прогресс</h1>
+            <p>Здесь не награды, а реальная динамика: что уже получается, где теряются баллы и какой навык даст следующий прирост.</p>
+          </div>
+          <div class="progress-period" role="group" aria-label="Период статистики">
+            <button type="button">Неделя</button>
+            <button type="button" class="active">6 недель</button>
+            <button type="button">Всё время</button>
+          </div>
+        </header>
+
+        <section class="progress-hero progress-card">
+          <div class="progress-hero__score">
+            <span class="progress-kicker"><span data-icon="chart"></span> Прогноз результата</span>
+            <div class="progress-score-row"><strong>73</strong><span>→</span><em>78</em><small>баллов</small></div>
+            <p>За 6 недель прогноз вырос на <b>13 баллов</b>. При текущем темпе цель 85 достижима к середине мая.</p>
+            <div class="progress-goal">
+              <div><span>Текущий прогноз</span><b>78 / 85</b></div>
+              <i><em style="width:91.7%"></em></i>
+              <small>До цели осталось 7 баллов</small>
+            </div>
+          </div>
+          <div class="progress-hero__chart">
+            <div class="progress-chart-labels"><span>65</span><span>68</span><span>72</span><span>73</span><span>76</span><span>78</span></div>
+            <svg viewBox="0 0 620 250" preserveAspectRatio="none" role="img" aria-label="Рост прогноза ЕГЭ с 65 до 78 баллов за шесть недель">
+              <defs>
+                <linearGradient id="progress-area" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#7657ff" stop-opacity=".42"/>
+                  <stop offset="1" stop-color="#7657ff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="progress-grid-line" d="M10 48H610 M10 98H610 M10 148H610 M10 198H610"/>
+              <path class="progress-chart-area" d="M10 205 C75 200 108 181 145 180 S225 146 265 151 S335 124 385 120 S470 76 510 82 S575 45 610 35 L610 238 L10 238Z"/>
+              <path class="progress-chart-line" d="M10 205 C75 200 108 181 145 180 S225 146 265 151 S335 124 385 120 S470 76 510 82 S575 45 610 35"/>
+              <circle cx="10" cy="205" r="5"/><circle cx="145" cy="180" r="5"/><circle cx="265" cy="151" r="5"/><circle cx="385" cy="120" r="5"/><circle cx="510" cy="82" r="5"/><circle cx="610" cy="35" r="7" class="is-current"/>
+            </svg>
+            <div class="progress-chart-weeks"><span>1 нед.</span><span>2 нед.</span><span>3 нед.</span><span>4 нед.</span><span>5 нед.</span><span>Сейчас</span></div>
+          </div>
+        </section>
+
+        <section class="progress-metrics" aria-label="Ключевые показатели">
+          <article class="progress-card"><span class="metric-icon orange" data-icon="flame"></span><div><small>Регулярность</small><strong>12 дней</strong><em>личная серия</em></div><b>+4 дня</b></article>
+          <article class="progress-card"><span class="metric-icon cyan" data-icon="clock"></span><div><small>Время обучения</small><strong>11 ч 35 мин</strong><em>за всё время</em></div><b>+2:10</b></article>
+          <article class="progress-card"><span class="metric-icon green" data-icon="check"></span><div><small>Точность ответов</small><strong>78%</strong><em>было 69%</em></div><b>+9%</b></article>
+          <article class="progress-card"><span class="metric-icon purple" data-icon="target"></span><div><small>Решено задач</small><strong>326</strong><em>за 42 занятия</em></div><b>+54</b></article>
+          <article class="progress-card"><span class="metric-icon yellow" data-icon="route"></span><div><small>Темы</small><strong>18 из 42</strong><em>освоено полностью</em></div><b>43%</b></article>
+          <article class="progress-card"><span class="metric-icon purple" data-icon="sparkles"></span><div><small>Опыт</small><strong>2 480 XP</strong><em>уровень «Тактик»</em></div><b>84%</b></article>
+        </section>
+
+        <div class="progress-layout">
+          <section class="progress-card progress-subjects">
+            <div class="progress-card__head">
+              <div><span class="progress-kicker">Освоение программы</span><h2>Прогресс по разделам</h2></div>
+              <a href="map.html">Открыть карту <span data-icon="arrow"></span></a>
+            </div>
+            <div class="subject-list">
+              <article>
+                <div class="subject-title"><span class="subject-dot green"></span><div><b>Алгебра</b><small>8 из 12 тем закрыто</small></div><strong>74%</strong></div>
+                <i><em style="width:74%"></em></i>
+                <p><span>Точность 84%</span><span>+5 баллов к прогнозу</span><span class="positive">Сильная зона</span></p>
+              </article>
+              <article>
+                <div class="subject-title"><span class="subject-dot yellow"></span><div><b>Геометрия</b><small>4 из 11 тем закрыто</small></div><strong>48%</strong></div>
+                <i><em style="width:48%"></em></i>
+                <p><span>Точность 62%</span><span>3 повторяющихся ошибки</span><span class="warning">Главная точка роста</span></p>
+              </article>
+              <article>
+                <div class="subject-title"><span class="subject-dot cyan"></span><div><b>Вероятность и статистика</b><small>4 из 7 тем закрыто</small></div><strong>66%</strong></div>
+                <i><em style="width:66%"></em></i>
+                <p><span>Точность 76%</span><span>Темп выше среднего</span><span class="positive">Стабильно</span></p>
+              </article>
+              <article>
+                <div class="subject-title"><span class="subject-dot purple"></span><div><b>Задачи с параметром</b><small>2 из 12 тем закрыто</small></div><strong>27%</strong></div>
+                <i><em style="width:27%"></em></i>
+                <p><span>Точность 51%</span><span>Пока недостаточно данных</span><span>В маршруте позже</span></p>
+              </article>
+            </div>
+          </section>
+
+          <aside class="progress-card progress-focus">
+            <div class="progress-card__head"><div><span class="progress-kicker">Рекомендация Стэди</span><h2>Что даст следующий рост</h2></div><span class="focus-spark" data-icon="sparkles"></span></div>
+            <div class="focus-topic">
+              <span>Приоритет №1</span>
+              <h3>Подобие треугольников</h3>
+              <p>Ты понимаешь признаки, но теряешь баллы на выборе нужных сторон и записи пропорции.</p>
+            </div>
+            <div class="focus-effect"><small>Потенциальный эффект</small><strong>+3–5 баллов</strong><span>после закрепления темы</span></div>
+            <ul>
+              <li><span data-icon="check"></span>Разобрать 2 типичные ошибки</li>
+              <li><span data-icon="target"></span>Решить 6 адаптивных задач</li>
+              <li><span data-icon="exam"></span>Пройти мини-проверку</li>
+            </ul>
+            <a class="button button--primary" href="lesson.html">Продолжить тему <span data-icon="arrow"></span></a>
+          </aside>
+
+          <section class="progress-card progress-activity">
+            <div class="progress-card__head">
+              <div><span class="progress-kicker">Последние 7 дней</span><h2>Регулярность занятий</h2></div>
+              <strong>6 из 7 дней</strong>
+            </div>
+            <div class="activity-bars" aria-label="Время занятий по дням недели">
+              <div><b>18</b><i style="--activity:64%"></i><span>Пн</span></div>
+              <div><b>24</b><i style="--activity:86%"></i><span>Вт</span></div>
+              <div><b>15</b><i style="--activity:54%"></i><span>Ср</span></div>
+              <div><b>0</b><i style="--activity:5%"></i><span>Чт</span></div>
+              <div><b>21</b><i style="--activity:75%"></i><span>Пт</span></div>
+              <div><b>28</b><i style="--activity:100%"></i><span>Сб</span></div>
+              <div class="today"><b>18</b><i style="--activity:64%"></i><span>Сегодня</span></div>
+            </div>
+            <div class="activity-note"><span data-icon="flame"></span><p><b>Лучший ритм — 15–25 минут.</b><small>Длинные занятия не нужны: твоя точность выше на коротких сессиях.</small></p></div>
+          </section>
+
+          <section class="progress-card progress-quality">
+            <div class="progress-card__head"><div><span class="progress-kicker">Качество решений</span><h2>Как меняются ошибки</h2></div><strong class="positive">−31%</strong></div>
+            <div class="quality-grid">
+              <article><div><span data-icon="clock"></span><b>Спешка</b></div><strong>14 → 8</strong><i><em style="width:43%"></em></i><small>ошибок за неделю</small></article>
+              <article><div><span data-icon="route"></span><b>Выбор метода</b></div><strong>11 → 7</strong><i><em style="width:36%"></em></i><small>ошибок за неделю</small></article>
+              <article><div><span data-icon="check"></span><b>Вычисления</b></div><strong>9 → 4</strong><i><em style="width:56%"></em></i><small>ошибок за неделю</small></article>
+            </div>
+          </section>
+
+          <section class="progress-card progress-topics">
+            <div class="progress-card__head"><div><span class="progress-kicker">Последние темы</span><h2>Динамика навыков</h2></div><a href="map.html">Все темы <span data-icon="arrow"></span></a></div>
+            <div class="topic-progress-list">
+              <article><span class="topic-status done" data-icon="check"></span><div><b>Проценты и пропорции</b><small>Освоено · точность 91%</small></div><strong>100%</strong></article>
+              <article><span class="topic-status done" data-icon="check"></span><div><b>Линейные функции</b><small>Освоено · точность 86%</small></div><strong>100%</strong></article>
+              <article><span class="topic-status active" data-icon="target"></span><div><b>Подобие треугольников</b><small>В работе · 4 из 7 шагов</small></div><strong>58%</strong></article>
+              <article><span class="topic-status repeat" data-icon="route"></span><div><b>Теория вероятностей</b><small>Нужно повторение через 2 дня</small></div><strong>72%</strong></article>
+              <article><span class="topic-status locked" data-icon="exam"></span><div><b>Задачи с параметром</b><small>Откроется после базовой алгебры</small></div><strong>27%</strong></article>
+            </div>
+          </section>
+
+          <aside class="progress-card progress-milestones">
+            <div class="progress-card__head"><div><span class="progress-kicker">Ближайшие точки</span><h2>Следующие рубежи</h2></div></div>
+            <div class="milestone-list">
+              <article><span data-icon="target"></span><div><b>80 баллов в прогнозе</b><small>Осталось +2 балла</small><i><em style="width:87%"></em></i></div></article>
+              <article><span data-icon="check"></span><div><b>20 закрытых тем</b><small>Осталось 2 темы</small><i><em style="width:90%"></em></i></div></article>
+              <article><span data-icon="flame"></span><div><b>Серия 14 дней</b><small>Осталось 2 дня</small><i><em style="width:86%"></em></i></div></article>
+            </div>
+            <a href="profile.html#awards">Смотреть достижения <span data-icon="arrow"></span></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <nav class="mobile-nav" aria-label="Мобильная навигация">
+      <a href="dashboard.html"><span data-icon="home"></span><span>Главная</span></a>
+      <a class="active" href="progress.html"><span data-icon="chart"></span><span>Прогресс</span></a>
+      <a class="solve" href="lesson.html"><span data-icon="target"></span><em>Решать</em></a>
+      <a href="mentor.html"><span data-icon="chat"></span><span>Стэди</span></a>
+      <a href="profile.html"><span data-icon="user"></span><span>Профиль</span></a>
+    </nav>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>

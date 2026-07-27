@@ -2,91 +2,277 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AtlasAI — персональный ИИ-наставник для подготовки к ЕГЭ: диагностика, карта знаний и разбор ошибок.">
-  <title>AtlasAI — персональный ИИ-наставник для ЕГЭ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Стэди — персональный AI-наставник для подготовки к ОГЭ и ЕГЭ. Диагностика, карта знаний, ежедневные миссии и понятный путь к нужному баллу.">
+  <meta name="theme-color" content="#1e0d47">
+  <meta name="api-base-url" content="">
+  <title>Стэди — персональный путь к нужному баллу</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="steady.css">
 </head>
-<body>
-  <div class="loading-screen"><div class="loading-brand"><span class="logo__mark">⌘</span><span>AtlasAI</span></div></div>
+<body class="steady-home">
+  <div class="loading-screen" aria-hidden="true">
+    <div class="loading-brand"><span class="logo__mark">С</span><span>СТЭДИ</span></div>
+  </div>
+
   <main class="landing">
-    <section class="hero">
-      <header class="site-header">
+    <section class="steady-hero" id="top">
+      <header class="site-header steady-header">
         <div class="container site-header__inner">
-          <a class="logo logo--inverse" href="index.html"><span class="logo__mark">⌘</span><span>Atlas<span>AI</span></span></a>
+          <a class="steady-logo" href="index.html" aria-label="Стэди — главная">
+            <span class="steady-logo__mark">{</span><span>СТЭДИ</span>
+          </a>
           <nav id="main-nav" aria-label="Основная навигация">
-            <a href="#how">Как это работает</a><a href="#features">Возможности</a><a href="#parents">Родителям</a><a href="pricing.html">Тарифы</a>
+            <a href="#how">Как работает</a>
+            <a href="#features">Возможности</a>
+            <a href="#pricing">Тарифы</a>
+            <a href="#faq">FAQ</a>
           </nav>
-          <div class="site-header__actions"><a class="header-login" href="login.html">Войти</a><a class="button button--primary" href="register.html">Начать бесплатно <span>→</span></a></div>
-          <button type="button" class="menu-button" data-menu aria-label="Открыть меню">☰</button>
+          <div class="site-header__actions">
+            <a class="header-login" href="login.html">Войти</a>
+            <a class="button button--primary" href="register.html">Начать бесплатно</a>
+          </div>
+          <button type="button" class="menu-button" data-menu aria-label="Открыть меню" aria-controls="main-nav" aria-expanded="false">☰</button>
         </div>
       </header>
-      <div class="hero__orb hero__orb--one"></div><div class="hero__orb hero__orb--two"></div>
-      <div class="container hero__grid">
-        <div class="hero__content">
-          <div class="eyebrow"><span>✦</span> Первый ИИ-наставник, который ищет причину</div>
-          <h1>Твой персональный путь к <span>нужному баллу</span></h1>
-          <p>AtlasAI определяет слабые места, объясняет ошибки и каждый день выбирает задания, которые быстрее всего приближают тебя к цели.</p>
-          <div class="hero__buttons"><a class="button button--primary" href="register.html">Пройти диагностику <span data-icon="arrow"></span></a><a class="button button--ghost" href="dashboard.html"><span data-icon="target"></span> Посмотреть кабинет</a></div>
-          <div class="hero__note"><span data-icon="check"></span> Первые 15 заданий бесплатно <i></i> Без привязки карты</div>
-        </div>
-        <div class="hero-product">
-          <div class="hero-product__top"><div><span class="online-dot"></span> Карта знаний обновлена</div><span>Профильная математика</span></div>
-          <div class="knowledge knowledge--compact">
-            <div class="knowledge__glow knowledge__glow--one"></div><div class="knowledge__glow knowledge__glow--two"></div>
-            <svg class="knowledge__lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M16 27 L39 18 L63 29 L79 56 L55 66 L30 62 L16 27 M39 18 L55 66 M63 29 L55 66 M30 62 L39 18"/></svg>
-            <button type="button" class="knowledge-node knowledge-node--green" style="left:16%;top:27%;width:65px;height:65px"><b>88%</b><span>Уравнения</span></button>
-            <button type="button" class="knowledge-node knowledge-node--green" style="left:39%;top:18%;width:75px;height:75px"><b>71%</b><span>Функции</span></button>
-            <button type="button" class="knowledge-node knowledge-node--yellow" style="left:63%;top:29%;width:66px;height:66px"><b>58%</b><span>Производная</span></button>
-            <button type="button" class="knowledge-node knowledge-node--red" style="left:30%;top:62%;width:82px;height:82px"><b>34%</b><span>Планиметрия</span></button>
-            <button type="button" class="knowledge-node knowledge-node--red" style="left:55%;top:66%;width:78px;height:78px"><b>26%</b><span>Подобие</span></button>
-            <button type="button" class="knowledge-node knowledge-node--yellow" style="left:79%;top:56%;width:69px;height:69px"><b>64%</b><span>Вероятность</span></button>
-            <div class="knowledge__tag">✦ ИИ нашёл первопричину</div>
+
+      <span class="study-mark study-mark--brace-one" aria-hidden="true">{</span>
+      <span class="study-mark study-mark--brace-two" aria-hidden="true">}</span>
+      <span class="study-mark study-mark--root" aria-hidden="true">√x</span>
+      <span class="study-mark study-mark--round" aria-hidden="true">( )</span>
+
+      <div class="container steady-hero__grid">
+        <div class="steady-hero__copy">
+          <div class="eyebrow">✦ Личный AI-наставник для ОГЭ и ЕГЭ</div>
+          <h1>Твой персональный путь к нужному баллу</h1>
+          <p>Стэди сам находит пробелы и каждый день выбирает следующий лучший шаг. Никаких лишних тем и бесконечных вариантов.</p>
+          <div class="steady-hero__buttons">
+            <a class="button button--primary" href="register.html">Начать бесплатно <span data-icon="arrow"></span></a>
+            <a class="button button--ghost" href="dashboard.html"><span data-icon="target"></span> Посмотреть кабинет</a>
           </div>
-          <div class="ai-toast"><span>⌘</span><div><b>Нашёл основную причину</b><p>Подобие треугольников влияет ещё на 5 типов задач</p></div><span>›</span></div>
-          <div class="score-pill"><small>Прогноз ЕГЭ</small><strong>68 → 74</strong><span>+6 баллов</span></div>
+          <div class="hero__note"><span data-icon="check"></span> Первые 3 дня бесплатно <i></i> Без привязки карты</div>
+        </div>
+
+        <div class="mission-demo mission-demo--image" aria-label="Пример сегодняшней миссии">
+          <div class="mission-demo__glow" aria-hidden="true"></div>
+          <img class="mission-demo__image" src="steady-mission-card-transparent.png" alt="Интерфейс сегодняшней миссии: время, задачи, опыт, прогресс и прогноз результата ЕГЭ">
+          <div class="hero-callout hero-callout--one"><b>находит<br>пробелы</b><span>→</span></div>
+          <div class="hero-callout hero-callout--two"><b>показывает<br>динамику</b><span>→</span></div>
+          <div class="hero-callout hero-callout--three"><b>ведёт<br>к цели</b><span>→</span></div>
         </div>
       </div>
-      <div class="container trust-row"><span>Один маршрут вместо хаоса</span><div><span data-icon="shield"></span>Безопасные объяснения</div><div><span data-icon="clock"></span>От 15 минут в день</div><div><span data-icon="target"></span>План до нужного балла</div></div>
+
+      <div class="container steady-benefits">
+        <article><span data-icon="chat"></span><div><h3>Понятные объяснения</h3><p>Меняем способ объяснения, пока тема не станет понятной.</p></div></article>
+        <article><span data-icon="clock"></span><div><h3>15 минут в день</h3><p>Короткие миссии без перегрузки и чувства вечной домашки.</p></div></article>
+        <article><span data-icon="target"></span><div><h3>План до нужного балла</h3><p>Персональный маршрут обновляется после каждого ответа.</p></div></article>
+      </div>
     </section>
 
-    <section class="section section--light" id="how"><div class="container">
-      <div class="section-heading"><div><span class="section-kicker">Система подготовки</span><h2>Не больше заданий.<br><span>Более точные задания.</span></h2></div><p>Тебе больше не нужно выбирать тему, искать теорию и гадать, что решать дальше. ИИ уже построил маршрут.</p></div>
-      <div class="bento">
-        <article class="bento-card bento-card--large purple-card"><div class="card-number">01</div><span class="feature-icon" data-icon="sparkles"></span><h3>Находим причину,<br>а не просто ошибку</h3><p>AtlasAI анализирует ход решения и определяет, чего именно не хватает: формулы, базовой темы или внимательности.</p><div class="reason-demo"><div class="reason-demo__wrong">− Ты потерял знак при переносе</div><div class="reason-demo__right">✓ Формулу ты знаешь правильно</div></div></article>
-        <article class="bento-card"><div class="card-number">02</div><span class="feature-icon blue" data-icon="route"></span><h3>Строим короткий маршрут</h3><p>Каждый следующий шаг зависит от твоих ответов, скорости и истории повторений.</p><div class="mini-route"><span class="done">✓</span><i></i><span class="active">2</span><i></i><span>3</span><i></i><span>4</span></div></article>
-        <article class="bento-card"><div class="card-number">03</div><span class="feature-icon green" data-icon="chart"></span><h3>Показываем рост баллов</h3><p>Не абстрактный процент знаний, а понятный прогноз и темы, которые дадут максимальный прирост.</p><div class="score-chart"><div><small>Сейчас</small><strong>68</strong></div><svg viewBox="0 0 200 70"><path d="M4 61 C35 62 42 44 72 48 S110 28 132 34 S166 10 196 7"/></svg><div><small>Цель</small><strong>85</strong></div></div></article>
+    <section class="steady-section journey-section" id="how">
+      <div class="container">
+        <div class="steady-section__head">
+          <div><span class="section-kicker section-kicker--light">Как это работает</span><h2>Твой путь без хаоса</h2></div>
+          <p>Не нужно думать, что делать дальше. Стэди уже выбрал самый полезный шаг.</p>
+        </div>
+        <div class="journey-route">
+          <article>
+            <span class="journey-route__number">01</span>
+            <div><h3>Диагностика</h3><p>10–15 минут, чтобы определить уровень и найти реальные пробелы.</p></div>
+          </article>
+          <span class="route-arrow" aria-hidden="true">↗</span>
+          <article>
+            <span class="journey-route__number">02</span>
+            <div><h3>Персональный маршрут</h3><p>Только нужные темы, задания и повторения.</p></div>
+          </article>
+          <span class="route-arrow" aria-hidden="true">↗</span>
+          <article>
+            <span class="journey-route__number">03</span>
+            <div><h3>Рост</h3><p>Закрывай темы, получай XP и следи за прогнозом.</p></div>
+          </article>
+        </div>
       </div>
-    </div></section>
+    </section>
 
-    <section class="section product-section" id="features"><div class="container product-grid">
-      <div class="product-copy"><span class="section-kicker">План на сегодня</span><h2>Открыл — и сразу понятно, <span>что делать дальше</span></h2><p>На главном экране только то, что действительно нужно сегодня. План адаптируется, если ты пропустил день, устал или начал двигаться быстрее.</p><ul><li><span data-icon="check"></span>Учитывает время до экзамена</li><li><span data-icon="check"></span>Возвращает темы до того, как ты их забудешь</li><li><span data-icon="check"></span>Не перегружает в сложные дни</li></ul><a class="button button--dark" href="dashboard.html">Открыть демо кабинета →</a></div>
-      <div class="dash-preview"><div class="dash-preview__side"><span class="logo__mark">⌘</span><div><span class="active">⌂</span><span>⌁</span><span>◎</span><span>◌</span></div><span>А</span></div><div class="dash-preview__main"><div class="dash-preview__head"><div><small>Четверг, 16 июля</small><b>Доброе утро, Алексей!</b></div><div><span>🔥 8 дней</span><span class="mini-avatar">А</span></div></div><div class="today-card"><div><span>План на сегодня</span><h4>Продолжим с подобия треугольников</h4><p>Осталось 4 задания · примерно 12 минут</p><div class="today-progress"><i></i><span>43%</span></div></div><button type="button">▶</button></div><div class="dash-mini-grid"><div><span>Прогноз ЕГЭ</span><strong>68 → 74</strong><small>при текущем темпе</small></div><div><span>Серия</span><strong>🔥 8 дней</strong><small>личный рекорд: 12</small></div><div><span>Слабая тема</span><strong>Планиметрия</strong><small>освоено на 34%</small></div></div></div></div>
-    </div></section>
+    <section class="steady-section knowledge-showcase" id="knowledge">
+      <div class="container knowledge-showcase__grid">
+        <div class="knowledge-showcase__map">
+          <div class="block-head">
+            <div><span class="section-kicker section-kicker--light">Главная особенность</span><h2>Карта знаний</h2></div>
+            <a href="map.html">Открыть карту <span data-icon="arrow"></span></a>
+          </div>
+          <svg class="topic-lines" viewBox="0 0 800 370" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M90 185 L260 90 L430 150 L610 76 M260 90 L355 290 M430 150 L355 290 M355 290 L610 282 M610 76 L710 190 L610 282"/>
+            <path class="topic-lines__active" d="M90 185 L260 90 L430 150 L355 290 L610 282"/>
+          </svg>
+          <button class="topic-pill is-green" type="button" style="--x:8%;--y:46%">Проценты <b>✓</b></button>
+          <button class="topic-pill is-green" type="button" style="--x:25%;--y:15%">Функции <b>✓</b></button>
+          <button class="topic-pill is-yellow" type="button" style="--x:49%;--y:33%">Подобие <b>58%</b></button>
+          <button class="topic-pill is-red" type="button" style="--x:69%;--y:10%">Геометрия <b>34%</b></button>
+          <button class="topic-pill is-yellow" type="button" style="--x:40%;--y:75%">Вероятность <b>64%</b></button>
+          <button class="topic-pill is-muted" type="button" style="--x:72%;--y:74%">Параметры <b>26%</b></button>
+          <div class="knowledge-impact">Закрой «Подобие» — откроются ещё <strong>5 тем</strong></div>
+        </div>
 
-    <section class="section error-section"><div class="container"><div class="center-heading"><span class="section-kicker">Умная обратная связь</span><h2>«Неправильно» — это не объяснение</h2><p>ИИ не выдаёт решение сразу. Он находит сложный шаг и помогает дойти до ответа самостоятельно.</p></div><div class="solver-preview"><div class="solver-preview__task"><span>Задание 6 · Планиметрия</span><h3>Найдите длину стороны BC, если треугольники ABC и ADE подобны.</h3><div class="geometry"><div class="triangle"></div><span class="point-a">A</span><span class="point-b">B</span><span class="point-c">C</span><span class="point-d">D</span><span class="point-e">E</span></div><div class="fake-answer"><span>Твой ответ</span><b>24</b><strong>×</strong></div></div><div class="solver-preview__ai"><div class="ai-head"><span>⌘</span><div><b>AtlasAI</b><small><i></i> анализ завершён</small></div></div><div class="chat-bubble">Формулу ты выбрал правильно. Ошибка появилась при составлении пропорции: соответствующие стороны стоят в разном порядке.</div><div class="chat-question">Какая сторона второго треугольника соответствует стороне BC?</div><div class="quick-actions"><button type="button">Покажи на рисунке</button><button type="button">Объясни проще</button><button type="button">Дай похожий пример</button></div></div></div></div></section>
+        <aside class="today-mission">
+          <div class="today-mission__head"><div><span class="section-kicker section-kicker--light">Сегодня</span><h2>Твоя миссия</h2></div><span>ϟ</span></div>
+          <ul>
+            <li class="done"><span data-icon="check"></span><div><b>Разминка</b><small>3 минуты</small></div></li>
+            <li><span data-icon="target"></span><div><b>6 задач</b><small>Подобие треугольников</small></div></li>
+            <li><span data-icon="exam"></span><div><b>Мини-босс</b><small>Проверка темы</small></div></li>
+          </ul>
+          <div class="today-mission__reward"><strong>+180 <small>XP</small></strong><span>2 из 3</span></div>
+          <a class="button button--primary" href="lesson.html">Начать миссию <span data-icon="arrow"></span></a>
+        </aside>
+      </div>
+    </section>
 
-    <section class="section map-section"><div class="container map-grid"><div class="map-copy"><span class="section-kicker section-kicker--light">Карта знаний</span><h2>Увидь, что на самом деле <span>тянет результат вниз</span></h2><p>Каждая тема связана с другими. Закрывая один фундаментальный пробел, ты сразу повышаешь шанс решить несколько типов заданий.</p><div class="map-stat"><strong>+4–6</strong><span>баллов даст работа<br>с одной первопричиной</span></div><a class="button button--primary" href="map.html">Исследовать карту →</a></div><div class="map-visual-wrap"><div class="knowledge"><div class="knowledge__glow knowledge__glow--one"></div><div class="knowledge__glow knowledge__glow--two"></div><svg class="knowledge__lines" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M16 27 L39 18 L63 29 L79 56 L55 66 L30 62 L16 27 M39 18 L55 66 M63 29 L55 66 M30 62 L39 18"/></svg><button type="button" class="knowledge-node knowledge-node--green" style="left:16%;top:27%;width:90px;height:90px"><b>88%</b><span>Уравнения</span></button><button type="button" class="knowledge-node knowledge-node--green" style="left:39%;top:18%;width:105px;height:105px"><b>71%</b><span>Функции</span></button><button type="button" class="knowledge-node knowledge-node--yellow" style="left:63%;top:29%;width:92px;height:92px"><b>58%</b><span>Производная</span></button><button type="button" class="knowledge-node knowledge-node--red" style="left:30%;top:62%;width:116px;height:116px"><b>34%</b><span>Планиметрия</span></button><button type="button" class="knowledge-node knowledge-node--red" style="left:55%;top:66%;width:108px;height:108px"><b>26%</b><span>Подобие</span></button><button type="button" class="knowledge-node knowledge-node--yellow" style="left:79%;top:56%;width:96px;height:96px"><b>64%</b><span>Вероятность</span></button><div class="knowledge__tag">✦ ИИ нашёл первопричину</div></div></div></div></section>
+    <section class="steady-section philosophy-section">
+      <div class="container philosophy-grid">
+        <h2>Высокие баллы появляются не за один день.</h2>
+        <div>
+          <h3>Каждый небольшой шаг делает тебя сильнее.</h3>
+          <div class="step-line">
+            <span><i></i><b>15 минут</b></span>
+            <span><i></i><b>+180 XP</b></span>
+            <span><i></i><b>1 тема</b></span>
+            <span><i></i><b>ближе к цели</b></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <section class="section parents-section" id="parents"><div class="container parents-grid"><div class="parent-card"><div class="parent-card__top"><div><span class="avatar">А</span><div><b>Прогресс Алексея</b><small>Профильная математика</small></div></div><span class="week">Эта неделя⌄</span></div><div class="parent-score"><div><small>Прогноз</small><strong>68 → 73</strong><span>+5 за неделю</span></div><div class="ring"><b>82%</b><small>плана</small></div></div><div class="parent-message"><span>✦</span><div><b>Главное за неделю</b><p>Алексей не ленится — скорость растёт. Сейчас результат ограничивает планиметрия, ИИ уже добавил её в план.</p></div></div></div><div class="parents-copy"><span class="section-kicker">Для родителей</span><h2>Не оценки, а <span>понятная картина</span></h2><p>Родители видят прогресс, регулярность и реальные причины сложностей — без контроля каждого задания и лишнего давления.</p><ul><li>✓ Еженедельный отчёт на почту</li><li>✓ Прогноз и динамика результата</li><li>✓ Управление подпиской и оплатой</li></ul></div></div></section>
+    <section class="steady-section feature-section" id="features">
+      <div class="container">
+        <div class="steady-section__head">
+          <div><span class="section-kicker section-kicker--light">Возможности</span><h2>Всё для ежедневного прогресса</h2></div>
+          <p>Нажми на функцию, чтобы увидеть, как она помогает в подготовке.</p>
+        </div>
+        <div class="feature-pills" role="tablist" aria-label="Возможности платформы">
+          <button class="active" type="button" role="tab" aria-selected="true" data-feature="Стэди видит историю ответов и подбирает следующий полезный шаг."><span data-icon="sparkles"></span>AI-наставник</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="Связи между темами показывают первопричину ошибок и потенциальный прирост."><span data-icon="route"></span>Карта знаний</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="Система рассчитывает короткий маршрут от текущего результата к цели."><span data-icon="target"></span>План до цели</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="Короткая ежедневная миссия помогает заниматься регулярно без перегрузки."><span data-icon="clock"></span>Миссии на 15 минут</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="XP, уровни и достижения превращают регулярность в видимый прогресс."><span data-icon="trophy"></span>Игровые уровни</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="Серия дней мягко поддерживает привычку и напоминает о небольшом шаге."><span data-icon="flame"></span>Серия дней</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="С голосовым помощником можно задавать вопросы естественно, как живому репетитору."><span data-icon="chat"></span>Голосовой помощник</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="Стэди отслеживает повторяющиеся ошибки и возвращает нужную тему вовремя."><span data-icon="chart"></span>История ошибок</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="Прогноз показывает текущую точку, цель и темы с наибольшим влиянием на балл."><span data-icon="chart"></span>Прогноз результата</button>
+          <button type="button" role="tab" aria-selected="false" data-feature="Объяснение можно перестроить: проще, на примере или через пошаговую схему."><span data-icon="chat"></span>Объяснить по-другому</button>
+        </div>
+        <div class="feature-explainer" aria-live="polite">
+          <span class="feature-explainer__icon" data-icon="sparkles"></span>
+          <div class="feature-explainer__copy">
+            <span class="feature-explainer__label">Персональная функция</span>
+            <h3 id="feature-title">AI-наставник</h3>
+            <p id="feature-description">Стэди видит историю ответов и подбирает следующий полезный шаг.</p>
+            <div class="feature-explainer__facts">
+              <span id="feature-benefit">Разбирает причину ошибки, а не просто показывает правильный ответ</span>
+              <strong id="feature-metric">24/7</strong>
+            </div>
+          </div>
+          <a href="register.html">Попробовать <span data-icon="arrow"></span></a>
+        </div>
+      </div>
+    </section>
 
-    <section class="section pricing-section" id="pricing"><div class="container"><div class="center-heading"><span class="section-kicker">Тарифы</span><h2>Начни бесплатно.<br>Продолжай, когда увидишь пользу.</h2></div><div class="billing-switch"><button type="button" class="active" data-billing="month">Ежемесячно</button><button type="button" data-billing="year">На год <span>−25%</span></button></div><div class="pricing-grid">
-      <article class="price-card"><div><span class="price-icon">ϟ</span><h3>Старт</h3><p>Чтобы познакомиться с системой</p></div><div class="price"><strong>0 ₽</strong><span>навсегда</span></div><ul><li>✓ Диагностика уровня</li><li>✓ Базовая карта знаний</li><li>✓ 5 заданий в день</li><li>✓ 3 объяснения ИИ в день</li></ul><a class="button button--secondary" href="register.html">Попробовать бесплатно</a></article>
-      <article class="price-card price-card--featured"><span class="popular">Выбирают чаще всего</span><div><span class="price-icon">✦</span><h3>Фокус</h3><p>Полный персональный маршрут</p></div><div class="price"><strong data-month="990 ₽" data-year="749 ₽">990 ₽</strong><span>в месяц</span></div><ul><li>✓ Всё из тарифа «Старт»</li><li>✓ Неограниченная практика</li><li>✓ Персональные объяснения ИИ</li><li>✓ Прогноз результата</li><li>✓ Пробные экзамены</li></ul><a class="button button--primary" href="register.html">Начать 7 дней бесплатно</a></article>
-      <article class="price-card"><div><span class="price-icon">♛</span><h3>Максимум</h3><p>Для интенсивной подготовки</p></div><div class="price"><strong data-month="1 690 ₽" data-year="1 290 ₽">1 690 ₽</strong><span>в месяц</span></div><ul><li>✓ Всё из тарифа «Фокус»</li><li>✓ Голосовой ИИ-наставник</li><li>✓ Проверка фото решений</li><li>✓ Расширенная аналитика</li><li>✓ Приоритетная поддержка</li></ul><a class="button button--secondary" href="register.html">Выбрать тариф</a></article>
-    </div></div></section>
+    <section class="steady-section transformation-section">
+      <div class="container">
+        <div class="steady-section__head"><div><span class="section-kicker section-kicker--light">Результат</span><h2>Через 3 месяца</h2></div><p>Не обещание волшебной кнопки, а результат небольших регулярных действий.</p></div>
+        <div class="transformation-card">
+          <div>
+            <h3>Сегодня</h3>
+            <ul><li>Не знаешь, с чего начать</li><li>Учишь всё подряд</li><li>Постоянно откладываешь</li><li>Боишься экзамена</li></ul>
+          </div>
+          <span class="transformation-arrow" data-icon="arrow"></span>
+          <div>
+            <h3>Через 3 месяца</h3>
+            <ul class="positive"><li>Есть персональный маршрут</li><li>Закрываешь только свои пробелы</li><li>Занимаешься по 15 минут</li><li>Уверенно идёшь к цели</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <section class="section faq-section"><div class="container faq-grid"><div><span class="section-kicker">Вопросы и ответы</span><h2>Всё важное<br>перед стартом</h2><p>Не нашли ответа? Напишите нам — ответим без скриптов и сложных терминов.</p><a href="mailto:hello@atlas-ai.ru">hello@atlas-ai.ru →</a></div><div class="faq-list">
-      <button type="button" class="faq-item is-open"><span><b>ИИ может ошибиться при проверке задания?</b><i>−</i></span><span class="faq-answer">Ответ сначала сверяется с эталонными правилами и критериями задания. ИИ отвечает за понятное объяснение, а не придумывает правильный результат.</span></button>
-      <button type="button" class="faq-item"><span><b>Какие предметы доступны?</b><i>+</i></span><span class="faq-answer">В первой версии доступна профильная математика. Русский язык и информатика будут добавлены следующими.</span></button>
-      <button type="button" class="faq-item"><span><b>Сколько времени нужно заниматься?</b><i>+</i></span><span class="faq-answer">Обычно достаточно 15–30 минут в день. План автоматически учитывает дату экзамена, цель и свободное время.</span></button>
-      <button type="button" class="faq-item"><span><b>Можно ли отменить подписку?</b><i>+</i></span><span class="faq-answer">Да, автопродление отключается в личном кабинете в любой момент. Доступ сохранится до конца оплаченного периода.</span></button>
-    </div></div></section>
+    <section class="steady-section audience-section">
+      <div class="container">
+        <div class="steady-section__head"><div><span class="section-kicker section-kicker--light">Для кого</span><h2>Стэди подстраивается под старт</h2></div></div>
+        <div class="audience-grid">
+          <article><span data-icon="route"></span><div><h3>Не знаешь, с чего начать</h3><p>Диагностика найдёт точку старта и первый приоритет.</p></div></article>
+          <article><span data-icon="clock"></span><div><h3>Не хватает регулярности</h3><p>Короткие миссии помогают не выпадать из подготовки.</p></div></article>
+          <article><span data-icon="target"></span><div><h3>Хочешь 80–90+</h3><p>Маршрут покажет темы с максимальным влиянием на балл.</p></div></article>
+        </div>
+      </div>
+    </section>
 
-    <section class="cta-section"><div class="container cta-box"><div class="cta-glow"></div><div><span class="section-kicker section-kicker--light">Твоя точка старта</span><h2>Узнай, какие темы прямо сейчас мешают тебе набрать больше</h2><p>15 адаптивных заданий · около 20 минут · персональная карта сразу после диагностики</p></div><a class="button button--primary" href="register.html">Начать бесплатно →</a></div></section>
-    <footer><div class="container footer-grid"><div><a class="logo" href="index.html"><span class="logo__mark">⌘</span><span>Atlas<span>AI</span></span></a><p>Персональный ИИ-наставник для подготовки к ЕГЭ.</p></div><div><b>Продукт</b><a href="#how">Как работает</a><a href="pricing.html">Тарифы</a><a href="#parents">Родителям</a></div><div><b>Поддержка</b><a href="mailto:hello@atlas-ai.ru">Написать нам</a><a href="#">База знаний</a><a href="#">Документы</a></div><div><b>Мы на связи</b><a href="mailto:hello@atlas-ai.ru">hello@atlas-ai.ru</a><span>Ежедневно, 09:00–21:00 МСК</span></div></div><div class="container footer-bottom"><span>© 2026 AtlasAI. Все права защищены.</span><span>Образовательная платформа не является официальным ресурсом ФИПИ.</span></div></footer>
+    <section class="steady-section pricing-section" id="pricing">
+      <div class="container">
+        <div class="steady-section__head"><div><span class="section-kicker section-kicker--light">Тарифы</span><h2>Выбери свой маршрут</h2></div><p>Первую диагностику и задания можно пройти без привязки карты.</p></div>
+        <div class="pricing-grid steady-pricing">
+          <article class="price-card">
+            <div class="price-card__head"><span class="price-icon">✦</span><div><h3>Базовый</h3><p>Обязательные предметы</p></div></div>
+            <div class="price"><strong data-month="990 ₽" data-year="790 ₽">990 ₽</strong><span>/ месяц</span></div>
+            <ul><li>Русский язык и математика</li><li>AI-наставник</li><li>Диагностика и маршрут</li><li>Карта знаний</li><li>История занятий</li></ul>
+            <a class="button button--ghost" href="register.html">Начать</a>
+          </article>
+          <article class="price-card price-card--featured">
+            <span class="popular">Самый популярный</span>
+            <div class="price-card__head"><span class="price-icon">ϟ</span><div><h3>Стандарт</h3><p>Всё из Базового + 1 предмет</p></div></div>
+            <div class="price"><strong data-month="1 890 ₽" data-year="1 490 ₽">1 890 ₽</strong><span>/ месяц</span></div>
+            <ul><li>Глубокая аналитика</li><li>Приоритетные объяснения</li><li>Расширенная статистика</li><li>Персональный прогноз</li><li>Пробные экзамены</li></ul>
+            <a class="button button--primary" href="register.html">Выбрать тариф <span data-icon="arrow"></span></a>
+          </article>
+          <article class="price-card">
+            <div class="price-card__head"><span class="price-icon">∞</span><div><h3>Unlimited</h3><p>Все предметы ОГЭ и ЕГЭ</p></div></div>
+            <div class="price"><strong data-month="2 490 ₽" data-year="1 990 ₽">2 490 ₽</strong><span>/ месяц</span></div>
+            <ul><li>Полный AI-функционал</li><li>Все маршруты</li><li>Полная аналитика</li><li>Фото решений</li><li>Новые функции первыми</li></ul>
+            <a class="button button--ghost" href="register.html">Получить доступ</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="steady-section faq-section" id="faq">
+      <div class="container">
+        <div class="steady-section__head"><div><span class="section-kicker section-kicker--light">FAQ</span><h2>Частые вопросы</h2></div><p>Если ответа нет, напиши нам: <a href="mailto:support@stedy.ru">support@stedy.ru</a></p></div>
+        <div class="steady-faq">
+          <button type="button" class="faq-item is-open"><span><b>Сколько времени нужно заниматься?</b><i>−</i></span><span class="faq-answer">Достаточно 15–20 минут в день. Главное — заниматься регулярно.</span></button>
+          <button type="button" class="faq-item"><span><b>Подойдёт ли, если знания слабые?</b><i>+</i></span><span class="faq-answer">Да. Диагностика определит текущий уровень и начнёт с фундаментальных пробелов.</span></button>
+          <button type="button" class="faq-item"><span><b>Какие предметы доступны?</b><i>+</i></span><span class="faq-answer">Русский язык, математика и предметы по выбору. Доступ зависит от тарифа.</span></button>
+          <button type="button" class="faq-item"><span><b>Можно ли заниматься с телефона?</b><i>+</i></span><span class="faq-answer">Да. Интерфейс адаптирован под смартфоны и ощущается как приложение.</span></button>
+          <button type="button" class="faq-item"><span><b>Чем Стэди отличается от онлайн-школы?</b><i>+</i></span><span class="faq-answer">Стэди ежедневно перестраивает маршрут под ответы ученика, а не выдаёт одинаковую программу всем.</span></button>
+          <button type="button" class="faq-item"><span><b>Есть ли бесплатный доступ?</b><i>+</i></span><span class="faq-answer">Да. После регистрации можно пройти диагностику и первые задания без карты.</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="steady-final">
+      <div class="container steady-final__box">
+        <div>
+          <span class="section-kicker section-kicker--light">Твоя точка старта</span>
+          <h2>Сегодня — один небольшой шаг.<br>Завтра — ещё один.</h2>
+          <p>Маленькие регулярные шаги приводят к большому результату.</p>
+          <a class="button button--primary" href="register.html">Начать бесплатно <span data-icon="arrow"></span></a>
+        </div>
+        <div class="final-route" aria-label="Путь к 85 баллам">
+          <span><i></i><b>15 минут</b></span>
+          <span><i></i><b>+180 XP</b></span>
+          <span><i></i><b>1 тема</b></span>
+          <strong>85<small>баллов</small></strong>
+        </div>
+      </div>
+    </section>
+
+    <footer class="steady-footer">
+      <div class="container steady-footer__inner">
+        <a class="steady-logo" href="#top"><span class="steady-logo__mark">{</span><span>СТЭДИ</span></a>
+        <nav aria-label="Навигация в подвале"><a href="#how">О платформе</a><a href="#pricing">Тарифы</a><a href="#faq">Помощь</a><a href="privacy.html">Политика</a></nav>
+        <span>© 2026 Стэди</span>
+      </div>
+    </footer>
   </main>
-  <div class="toast" id="toast"></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="api.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

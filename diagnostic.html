@@ -1,6 +1,64 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Диагностика — AtlasAI</title><link rel="stylesheet" href="styles.css"></head><body>
-<main class="diagnostic-page" id="diagnostic-page"><div class="diagnostic-top"><a class="logo" href="index.html"><span class="logo__mark">⌘</span><span>Atlas<span>AI</span></span></a><div><span>Диагностика</span><div class="diag-progress"><i style="width:40%"></i></div><b>8 из 20</b></div><a href="index.html">×</a></div>
-<div class="diagnostic-shell"><section class="diagnostic-task"><div class="task-meta"><span>Профильная математика</span><span>Задание 6 · Планиметрия</span></div><h1>В треугольнике ABC угол C равен 90°, CH — высота, AB = 20, AH = 5. Найдите AC.</h1><div class="diag-geometry"><div class="triangle-large"></div><span class="p-a">A</span><span class="p-b">B</span><span class="p-c">C</span><span class="p-h">H</span><i class="line-height"></i><small class="l-20">20</small><small class="l-5">5</small></div><label class="diag-answer">Ответ<input type="text" id="diagnostic-answer" placeholder="Введи число" inputmode="decimal"></label><div class="diag-actions"><button type="button" data-toast="Подумай, какая теорема связывает высоту и гипотенузу">? Не знаю, с чего начать</button><button type="button" class="button button--primary" id="diagnostic-check" disabled>Проверить ответ →</button></div></section>
-<aside class="diagnostic-aside"><div class="focus-card"><span class="logo__mark">⌘</span><h3>Решай так, как умеешь</h3><p>Мы оцениваем не только ответ, но и время, уверенность и выбранный способ.</p></div><div class="timer"><span>◷</span><div><small>Время на задачу</small><strong id="timer">02:34</strong></div></div><div class="confidence"><span>Насколько уверен в ответе?</span><div><button type="button">Не уверен</button><button type="button">Вроде да</button><button type="button">Уверен</button></div></div></aside></div></main>
-<section class="diagnostic-result hidden" id="diagnostic-result"><div class="result-card"><div class="result-badge">✦</div><span class="section-kicker">Диагностика завершена</span><h1>Твоя карта знаний готова</h1><p>Система нашла 3 сильные темы и 2 пробела, которые сейчас сильнее всего влияют на результат.</p><div class="result-score"><div><small>Текущий прогноз</small><strong>68</strong><span>баллов</span></div><span>→</span><div><small>Реально через 8 недель</small><strong>78–82</strong><span>балла</span></div></div><div class="result-findings"><div><span>✓</span><span><b>Сильная сторона</b>Уравнения и вычисления</span></div><div><span>◎</span><span><b>Главный пробел</b>Подобие треугольников</span></div><div><span>◷</span><span><b>Оптимальный темп</b>22 минуты в день</span></div></div><a class="button button--primary" href="dashboard.html">Открыть мой план →</a></div></section>
-<div class="toast" id="toast"></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#100526">
+  <title>Диагностика — Стэди</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="steady.css">
+</head>
+<body class="steady-diagnostic-body">
+  <main class="diagnostic-page" id="diagnostic-page" data-diagnostic-task-id="diag-demo-08">
+    <header class="diagnostic-top">
+      <a class="steady-logo steady-logo--app" href="index.html"><span class="steady-logo__mark">{</span><span>СТЭДИ</span></a>
+      <div class="diagnostic-top__progress">
+        <span>Диагностика</span>
+        <div class="diag-progress"><i style="width:40%"></i></div>
+        <b>8 из 20</b>
+      </div>
+      <a class="diagnostic-close" href="dashboard.html" aria-label="Закрыть диагностику">×</a>
+    </header>
+    <div class="diagnostic-shell">
+      <section class="diagnostic-task">
+        <div class="task-meta"><span>Профильная математика</span><span>Задание 6 · Планиметрия</span></div>
+        <h1>В треугольнике ABC угол C равен 90°, CH — высота, AB = 20, AH = 5. Найдите AC.</h1>
+        <div class="diag-geometry" aria-label="Схема треугольника">
+          <div class="triangle-large"></div><span class="p-a">A</span><span class="p-b">B</span><span class="p-c">C</span><span class="p-h">H</span><i class="line-height"></i><small class="l-20">20</small><small class="l-5">5</small>
+        </div>
+        <label class="diag-answer">Твой ответ<input type="text" id="diagnostic-answer" placeholder="Введи число" inputmode="decimal"></label>
+        <div class="diag-actions">
+          <button type="button" data-toast="Подумай, какая теорема связывает высоту и гипотенузу"><span data-icon="bulb"></span> Не знаю, с чего начать</button>
+          <button type="button" class="button button--primary" id="diagnostic-check" disabled>Проверить ответ <span data-icon="arrow"></span></button>
+        </div>
+      </section>
+      <aside class="diagnostic-aside">
+        <div class="focus-card"><span class="focus-card__mark" data-icon="sparkles"></span><h3>Решай так, как умеешь</h3><p>Мы оцениваем не только ответ, но и время, уверенность и выбранный способ. Ошибаться здесь нормально.</p></div>
+        <div class="timer"><span data-icon="clock"></span><div><small>Время на задачу</small><strong id="timer">02:34</strong></div></div>
+        <div class="confidence"><span>Насколько уверен в ответе?</span><p>Это помогает отличить случайную ошибку от пробела.</p><div><button type="button">Не уверен</button><button type="button">Вроде да</button><button type="button">Уверен</button></div></div>
+      </aside>
+    </div>
+  </main>
+  <section class="diagnostic-result hidden" id="diagnostic-result">
+    <div class="result-card">
+      <div class="result-badge" data-icon="sparkles"></div>
+      <span class="section-kicker">Диагностика завершена</span>
+      <h1>Твоя карта знаний готова</h1>
+      <p id="diagnostic-summary">Система нашла 3 сильные темы и 2 пробела, которые сейчас сильнее всего влияют на результат.</p>
+      <div class="result-score">
+        <div><small>Текущий прогноз</small><strong id="diagnostic-current-score">68</strong><span>баллов</span></div>
+        <span data-icon="arrow"></span>
+        <div><small>Реально через 8 недель</small><strong id="diagnostic-potential-score">78–82</strong><span>балла</span></div>
+      </div>
+      <div class="result-findings">
+        <div><span data-icon="check"></span><span><b>Сильная сторона</b><em id="diagnostic-strength">Уравнения и вычисления</em></span></div>
+        <div><span data-icon="target"></span><span><b>Главный пробел</b><em id="diagnostic-gap">Подобие треугольников</em></span></div>
+        <div><span data-icon="clock"></span><span><b>Оптимальный темп</b><em id="diagnostic-pace">22 минуты в день</em></span></div>
+      </div>
+      <a class="button button--primary" href="dashboard.html">Открыть мой план <span data-icon="arrow"></span></a>
+    </div>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>

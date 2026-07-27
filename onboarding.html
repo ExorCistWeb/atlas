@@ -1,4 +1,44 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Настройка маршрута — AtlasAI</title><link rel="stylesheet" href="styles.css"></head><body>
-<main class="onboarding" data-onboarding><div class="onboarding__top"><a class="logo" href="index.html"><span class="logo__mark">⌘</span><span>Atlas<span>AI</span></span></a><a href="diagnostic.html">Пропустить настройку</a></div><div class="onboarding__progress"><span id="onboarding-progress" style="width:25%"></span></div>
-<div class="onboarding-card"><span class="step-label" id="step-label">Шаг 1 из 4</span><h1 id="step-title">К какому экзамену готовимся?</h1><p id="step-subtitle">Настроим задания и критерии проверки</p><div class="choice-grid" id="choice-grid"></div><div class="onboarding-actions"><button type="button" class="button button--secondary" id="step-back">← Назад</button><button type="button" class="button button--primary" id="step-next">Продолжить →</button></div></div></main>
-<div class="toast" id="toast"></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#100526">
+  <title>Настройка маршрута — Стэди</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="steady.css">
+</head>
+<body class="steady-onboarding-body">
+  <main class="onboarding" data-onboarding>
+    <header class="onboarding__top">
+      <a class="steady-logo steady-logo--app" href="index.html"><span class="steady-logo__mark">{</span><span>СТЭДИ</span></a>
+      <div class="onboarding-status"><span>Персональный маршрут</span><b>≈ 2 минуты</b></div>
+      <a href="diagnostic.html">Пропустить настройку</a>
+    </header>
+    <div class="onboarding__progress"><span id="onboarding-progress" style="width:25%"></span></div>
+    <section class="onboarding-layout">
+      <aside class="onboarding-context">
+        <span class="onboarding-context__icon" data-icon="route"></span>
+        <span class="section-kicker">Стэди настраивается</span>
+        <h2>Маршрут будет твоим, а не «для всех»</h2>
+        <p>Ответы зададут цель, темп и сложность первой диагностики. Всё можно изменить позже в профиле.</p>
+        <div><span data-icon="check"></span><b>Без оценок и давления</b></div>
+        <div><span data-icon="sparkles"></span><b>Только нужные задания</b></div>
+        <div><span data-icon="clock"></span><b>Реалистичный ежедневный темп</b></div>
+      </aside>
+      <section class="onboarding-card">
+        <span class="step-label" id="step-label">Шаг 1 из 4</span>
+        <h1 id="step-title">К какому экзамену готовимся?</h1>
+        <p id="step-subtitle">Настроим задания и критерии проверки</p>
+        <div class="choice-grid" id="choice-grid"></div>
+        <div class="onboarding-actions">
+          <button type="button" class="button button--secondary" id="step-back">← Назад</button>
+          <button type="button" class="button button--primary" id="step-next">Продолжить →</button>
+        </div>
+      </section>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>

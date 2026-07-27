@@ -1,7 +1,78 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Тарифы — AtlasAI</title><link rel="stylesheet" href="styles.css"></head><body>
-<main class="pricing-page"><div class="pricing-page__top"><a class="logo" href="index.html"><span class="logo__mark">⌘</span><span>Atlas<span>AI</span></span></a><a href="index.html">← На главную</a></div><div class="container"><div class="center-heading"><span class="section-kicker">Простая подписка</span><h1>Инвестиция не в количество уроков,<br><span>а в понятный результат</span></h1><p>Начни бесплатно. Оплата понадобится только для полного персонального маршрута.</p></div><div class="billing-switch"><button type="button" class="active" data-billing="month">Ежемесячно</button><button type="button" data-billing="year">На год <span>−25%</span></button></div><div class="pricing-grid">
-<article class="price-card"><div><span class="price-icon">ϟ</span><h3>Старт</h3><p>Чтобы познакомиться с системой</p></div><div class="price"><strong>0 ₽</strong><span>навсегда</span></div><ul><li>✓ Диагностика уровня</li><li>✓ Базовая карта знаний</li><li>✓ 5 заданий в день</li><li>✓ 3 объяснения ИИ в день</li></ul><a class="button button--secondary" href="register.html">Попробовать бесплатно</a></article>
-<article class="price-card price-card--featured"><span class="popular">Выбирают чаще всего</span><div><span class="price-icon">✦</span><h3>Фокус</h3><p>Полный персональный маршрут</p></div><div class="price"><strong data-month="990 ₽" data-year="749 ₽">990 ₽</strong><span>в месяц</span></div><ul><li>✓ Всё из тарифа «Старт»</li><li>✓ Неограниченная практика</li><li>✓ Персональные объяснения ИИ</li><li>✓ Прогноз результата</li><li>✓ Пробные экзамены</li></ul><a class="button button--primary" href="register.html">Начать 7 дней бесплатно</a></article>
-<article class="price-card"><div><span class="price-icon">♛</span><h3>Максимум</h3><p>Для интенсивной подготовки</p></div><div class="price"><strong data-month="1 690 ₽" data-year="1 290 ₽">1 690 ₽</strong><span>в месяц</span></div><ul><li>✓ Всё из тарифа «Фокус»</li><li>✓ Голосовой ИИ-наставник</li><li>✓ Проверка фото решений</li><li>✓ Расширенная аналитика</li><li>✓ Приоритетная поддержка</li></ul><a class="button button--secondary" href="register.html">Выбрать тариф</a></article></div>
-<div class="pricing-guarantees"><div><span>◇</span><span><b>Безопасная оплата</b>Чеки и защищённое соединение</span></div><div><span>↻</span><span><b>Отмена в любой момент</b>Без звонков и скрытых условий</span></div><div><span>♢</span><span><b>7 дней бесплатно</b>Для тарифов «Фокус» и «Максимум»</span></div></div></div></main>
-<div class="toast" id="toast"></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Тарифы Стэди — персональная подготовка к ОГЭ и ЕГЭ с ИИ-наставником.">
+  <meta name="theme-color" content="#1e0d47">
+  <title>Тарифы — Стэди</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="steady.css">
+</head>
+<body class="steady-home">
+  <main class="landing pricing-standalone">
+    <header class="site-header steady-header">
+      <div class="container site-header__inner">
+        <a class="steady-logo" href="index.html"><span class="steady-logo__mark">{</span><span>СТЭДИ</span></a>
+        <nav id="main-nav" aria-label="Навигация"><a href="index.html#how">Как работает</a><a href="index.html#knowledge">Карта знаний</a><a href="pricing.html">Тарифы</a><a href="index.html#faq">FAQ</a></nav>
+        <div class="site-header__actions"><a class="header-login" href="login.html">Войти</a><a class="button button--primary" href="register.html">Начать бесплатно</a></div>
+        <button class="menu-button" type="button" data-menu aria-controls="main-nav" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <section class="steady-section pricing-section">
+      <div class="container">
+        <div class="pricing-intro">
+          <span class="section-kicker section-kicker--light">Понятные тарифы</span>
+          <h1>Плати за маршрут к результату,<br><span>а не за бесконечный каталог заданий</span></h1>
+          <p>Начни с бесплатной диагностики. Карту вводить не нужно.</p>
+          <div class="billing-switch billing-switch--dark"><button type="button" class="active" data-billing="month">Ежемесячно</button><button type="button" data-billing="year">На год <span>выгоднее</span></button></div>
+        </div>
+
+        <div class="pricing-grid steady-pricing">
+          <article class="price-card">
+            <div class="price-card__head"><span class="price-icon">✦</span><div><h3>Базовый</h3><p>Обязательные предметы</p></div></div>
+            <div class="price"><strong data-month="990 ₽" data-year="790 ₽">990 ₽</strong><span>/ месяц</span></div>
+            <ul><li>Русский язык и математика</li><li>Персональный ИИ-наставник</li><li>Диагностика и маршрут</li><li>Карта знаний</li><li>История занятий</li></ul>
+            <a class="button button--ghost" href="register.html?plan=basic">Выбрать Базовый</a>
+          </article>
+
+          <article class="price-card price-card--featured">
+            <span class="popular">Самый популярный</span>
+            <div class="price-card__head"><span class="price-icon">ϟ</span><div><h3>Стандарт</h3><p>Базовый + один предмет</p></div></div>
+            <div class="price"><strong data-month="1 890 ₽" data-year="1 490 ₽">1 890 ₽</strong><span>/ месяц</span></div>
+            <ul><li>Всё из тарифа «Базовый»</li><li>Глубокая аналитика ошибок</li><li>Персональный прогноз балла</li><li>Пробные экзамены</li><li>Приоритетные объяснения</li></ul>
+            <a class="button button--primary" href="register.html?plan=standard">Выбрать Стандарт <span data-icon="arrow"></span></a>
+          </article>
+
+          <article class="price-card">
+            <div class="price-card__head"><span class="price-icon">∞</span><div><h3>Unlimited</h3><p>Все предметы ОГЭ и ЕГЭ</p></div></div>
+            <div class="price"><strong data-month="2 490 ₽" data-year="1 990 ₽">2 490 ₽</strong><span>/ месяц</span></div>
+            <ul><li>Всё из тарифа «Стандарт»</li><li>Все доступные предметы</li><li>Полный ИИ-функционал</li><li>Проверка фото решений</li><li>Новые функции первыми</li></ul>
+            <a class="button button--ghost" href="register.html?plan=unlimited">Выбрать Unlimited</a>
+          </article>
+        </div>
+
+        <div class="pricing-guarantees pricing-guarantees--dark">
+          <div><span data-icon="shield"></span><span><b>Безопасная оплата</b>Чек и защищённая платёжная страница</span></div>
+          <div><span data-icon="check"></span><span><b>Отмена в любой момент</b>Без звонков и скрытых условий</span></div>
+          <div><span data-icon="sparkles"></span><span><b>Бесплатный старт</b>Диагностика и первые задания без карты</span></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="steady-footer">
+      <div class="container steady-footer__inner">
+        <a class="steady-logo" href="index.html"><span class="steady-logo__mark">{</span><span>СТЭДИ</span></a>
+        <nav aria-label="Навигация в подвале"><a href="index.html#how">О платформе</a><a href="pricing.html">Тарифы</a><a href="index.html#faq">Помощь</a><a href="privacy.html">Политика</a></nav>
+        <span>© 2026 Стэди</span>
+      </div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script>
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

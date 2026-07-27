@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#100526">
+  <meta name="description" content="Персональный ИИ-наставник Стэди">
+  <title>ИИ-наставник — Стэди</title>
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="steady.css">
+</head>
+<body class="steady-app-body">
+<main class="student-app" data-mentor-page>
+  <aside class="app-sidebar" aria-label="Навигация кабинета"></aside>
+  <section class="app-content">
+    <header class="app-top"><div><a class="mobile-app-logo" href="index.html">{</a><span>ИИ-наставник</span></div><div class="app-top__actions"><button type="button" class="streak"><span data-icon="flame"></span> 12 дней</button><button type="button" data-balance><span data-icon="wallet"></span><span data-balance-value>350 ₽</span></button><button type="button" data-notifications aria-label="Уведомления"><span data-icon="bell"></span><i></i></button><button type="button" class="top-avatar" data-profile-toggle aria-label="Открыть меню профиля">АА</button></div></header>
+    <div class="mentor-page">
+      <header class="mentor-page__head">
+        <div><span class="section-kicker">Персональный контекст</span><h1>Стэди знает, где ты сейчас</h1><p>Спроси о теме, ошибке, маршруте или попроси собрать тренировку. Наставник учитывает карту знаний и последние ответы.</p></div>
+        <div class="mentor-status"><i></i><span>Контекст обновлён</span><b>42 ответа изучено</b></div>
+      </header>
+      <div class="mentor-workspace">
+        <aside class="mentor-context-card">
+          <div class="mentor-context-card__top"><span data-icon="sparkles"></span><div><b>Фокус дня</b><small>Главное влияние на балл</small></div></div>
+          <h2>Подобие треугольников</h2>
+          <p>Пробел в выборе соответствующих сторон мешает решать ещё пять связанных типов задач.</p>
+          <div class="mentor-context-meter"><span><b>Освоено</b><em>26%</em></span><i><em style="width:26%"></em></i></div>
+          <div class="mentor-context-impact"><span data-icon="route"></span><p><b>Потенциал: +4–6 баллов</b><small>Примерно 3 коротких занятия</small></p></div>
+          <a class="button button--primary" href="lesson.html">Начать тренировку <span data-icon="arrow"></span></a>
+        </aside>
+        <section class="mentor-conversation">
+          <header><div class="mentor-avatar" data-icon="sparkles"></div><div><b>Стэди</b><small><i></i> в контексте твоего маршрута</small></div><button type="button" data-toast="История диалога сохранена">•••</button></header>
+          <div class="mentor-page-chat" id="mentor-page-chat">
+            <div class="mentor-message"><p>Привет, Алексей! Сегодня я бы не стал давать тебе ещё один полный вариант. Лучше за 15 минут закроем одну точную причину ошибок в геометрии.</p></div>
+            <div class="mentor-insight">
+              <span data-icon="target"></span>
+              <div><b>Что я заметил</b><p>В 3 из 4 последних решений ты верно находил отношение, но менял порядок соответствующих сторон.</p></div>
+            </div>
+          </div>
+          <div class="mentor-suggestions">
+            <button type="button" data-mentor-prompt>Объясни подобие на простой схеме</button>
+            <button type="button" data-mentor-prompt>Разбери мою последнюю ошибку</button>
+            <button type="button" data-mentor-prompt>Собери тренировку на 15 минут</button>
+            <button type="button" data-mentor-prompt>Как дойти до 85 баллов?</button>
+          </div>
+          <div class="mentor-page-input"><button type="button" data-toast="Голосовой ввод будет подключён через API">◉</button><input id="mentor-page-input" type="text" placeholder="Спроси Стэди о подготовке..."><button type="button" id="mentor-page-send"><span data-icon="send"></span></button></div>
+          <small class="mentor-disclaimer">ИИ может ошибаться. Задания и итоговые ответы проверяются по базе решений ЕГЭ.</small>
+        </section>
+      </div>
+    </div>
+  </section>
+  <nav class="mobile-nav" aria-label="Мобильная навигация">
+      <a href="dashboard.html"><span data-icon="home"></span><span>Главная</span></a>
+      <a href="progress.html"><span data-icon="chart"></span><span>Прогресс</span></a>
+      <a class="solve" href="lesson.html"><span data-icon="target"></span><em>Решать</em></a>
+      <a class="active" href="mentor.html"><span data-icon="chat"></span><span>Стэди</span></a>
+      <a href="profile.html"><span data-icon="user"></span><span>Профиль</span></a>
+    </nav>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>

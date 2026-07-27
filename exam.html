@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#100526">
+  <meta name="description" content="Пробный экзамен ЕГЭ в Стэди">
+  <title>Пробный экзамен — Стэди</title>
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="steady.css">
+</head>
+<body class="steady-app-body">
+<main class="student-app" data-exam-page data-exam-id="ege-math-demo-04">
+  <aside class="app-sidebar" aria-label="Навигация кабинета"></aside>
+  <section class="app-content">
+    <header class="app-top"><div><a class="mobile-app-logo" href="index.html">{</a><span>Пробный экзамен</span></div><div class="app-top__actions"><button type="button" class="streak"><span data-icon="flame"></span> 12 дней</button><button type="button" data-balance><span data-icon="wallet"></span><span data-balance-value>350 ₽</span></button><button type="button" data-notifications aria-label="Уведомления"><span data-icon="bell"></span><i></i></button><button type="button" class="top-avatar" data-profile-toggle aria-label="Открыть меню профиля">АА</button></div></header>
+    <div class="exam-page">
+      <section class="exam-overview">
+        <header class="exam-overview__head"><div><span class="section-kicker">Режим экзамена</span><h1>Пробник по профильной математике</h1><p>Полная симуляция ЕГЭ с таймером, автоматическим сохранением и разбором причин каждой ошибки.</p></div><span class="exam-overview__badge">Готовность 78%</span></header>
+        <div class="exam-overview-grid">
+          <article class="exam-main-card">
+            <div class="exam-main-card__visual"><span>ЕГЭ</span><strong>85</strong><small>цель</small></div>
+            <div>
+              <span class="dash-kicker">Вариант № 4 · Актуальная структура</span>
+              <h2>Проверь готовность в реальных условиях</h2>
+              <p>Во время пробника подсказки отключены. После завершения Стэди соберёт персональный разбор и обновит карту знаний.</p>
+              <div class="exam-metrics"><span><i data-icon="exam"></i><b>19 заданий</b><small>первая и вторая части</small></span><span><i data-icon="clock"></i><b>235 минут</b><small>официальный лимит</small></span><span><i data-icon="target"></i><b>73–79 баллов</b><small>ожидаемый диапазон</small></span></div>
+              <button type="button" class="button button--primary" id="exam-start">Начать пробный экзамен <span data-icon="arrow"></span></button>
+            </div>
+          </article>
+          <aside class="exam-rules">
+            <h2>Перед стартом</h2>
+            <ul><li><span data-icon="check"></span><p><b>Выдели спокойное время</b><small>Можно сделать один перерыв до 10 минут</small></p></li><li><span data-icon="check"></span><p><b>Приготовь черновик</b><small>Решения второй части можно загрузить фото</small></p></li><li><span data-icon="check"></span><p><b>Ответы сохраняются</b><small>Можно безопасно вернуться после перезагрузки</small></p></li></ul>
+          </aside>
+        </div>
+        <section class="exam-history"><div class="dash-card__head"><div><span class="dash-kicker">Последняя попытка</span><h2>История пробников</h2></div><a href="profile.html">Все результаты <span data-icon="arrow"></span></a></div><div class="exam-history__row"><span>12 июля</span><b>68 баллов</b><span>14 из 19 заданий</span><span class="positive">+5 к прогнозу</span><button type="button" data-toast="Открываем подробный разбор последней попытки">Разбор →</button></div></section>
+      </section>
+      <section class="exam-workspace hidden">
+        <header class="exam-workspace__top"><a href="exam.html">← Выйти</a><div><b>Профильная математика</b><span id="exam-task-progress">1 из 19</span></div><strong><span data-icon="clock"></span> 03:54:12</strong></header>
+        <div class="exam-workspace__grid">
+          <aside class="exam-task-nav" aria-label="Навигация по заданиям">
+            <span>Задания</span>
+            <div><button class="active" type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button><button type="button">5</button><button type="button">6</button><button type="button">7</button><button type="button">8</button><button type="button">9</button><button type="button">10</button><button type="button">11</button><button type="button">12</button><button type="button">13</button><button type="button">14</button><button type="button">15</button><button type="button">16</button><button type="button">17</button><button type="button">18</button><button type="button">19</button></div>
+          </aside>
+          <section class="exam-task-card"><div class="task-meta"><span id="exam-task-number">Задание 1</span><span>Краткий ответ</span></div><h1>Найдите значение выражения: 3,6 · 2,5 − 4,2.</h1><div class="exam-expression">3,6 × 2,5 − 4,2</div><label>Твой ответ<input id="exam-answer" type="text" inputmode="decimal" placeholder="Введи число"></label><div class="exam-task-actions"><button type="button" data-toast="Задание отмечено, к нему можно вернуться">Отметить и вернуться</button><button type="button" class="button button--primary" id="exam-save" disabled>Сохранить и далее <span data-icon="arrow"></span></button></div></section>
+        </div>
+      </section>
+    </div>
+  </section>
+  <nav class="mobile-nav" aria-label="Мобильная навигация">
+      <a href="dashboard.html"><span data-icon="home"></span><span>Главная</span></a>
+      <a href="progress.html"><span data-icon="chart"></span><span>Прогресс</span></a>
+      <a class="solve" href="lesson.html"><span data-icon="target"></span><em>Решать</em></a>
+      <a href="mentor.html"><span data-icon="chat"></span><span>Стэди</span></a>
+      <a href="profile.html"><span data-icon="user"></span><span>Профиль</span></a>
+    </nav>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>
