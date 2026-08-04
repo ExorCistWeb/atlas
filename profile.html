@@ -27,11 +27,6 @@
     <header class="app-top"><div><a class="mobile-app-logo" href="index.html">{</a><span>Личный кабинет</span></div><div class="app-top__actions"><button type="button" class="streak"><span data-icon="flame"></span> 8 дней</button><button type="button" data-balance><span data-icon="wallet"></span><span data-balance-value>350 ₽</span></button><button type="button" data-notifications aria-label="Уведомления"><span data-icon="bell"></span><i></i></button><button type="button" class="top-avatar" data-profile-toggle aria-label="Открыть меню профиля">А</button></div></header>
     <div class="profile-page">
       <div class="profile-page__head"><div><span class="section-kicker">Аккаунт ученика</span><h1>Личный кабинет</h1><p>Управляй профилем, подпиской, балансом и уведомлениями.</p></div><button type="button" class="button button--primary" id="profile-save"><span data-icon="check"></span>Сохранить изменения</button></div>
-      <nav class="profile-shortcuts" aria-label="Быстрые разделы кабинета">
-        <a href="progress.html"><span data-icon="chart"></span><b>Прогресс</b><small>Динамика и темы</small></a>
-        <a href="#subscription"><span data-icon="card"></span><b>Подписка</b><small>Тариф и оплата</small></a>
-        <a href="#awards"><span data-icon="trophy"></span><b>Достижения</b><small>Награды и серии</small></a>
-      </nav>
       <div class="profile-grid">
         <section class="profile-card"><div class="profile-card__head"><div><h2>Личные данные</h2><p>Используются в отчётах и уведомлениях</p></div></div><div class="account-user"><span class="account-user__avatar">А</span><div><b data-profile-name>Алексей</b><span>Ученик · 11 класс</span></div></div><div class="profile-form" id="profile-form"><label>Имя<input type="text" name="name" value="Алексей" autocomplete="name"></label><label>Класс<input type="text" name="grade" value="11 класс"></label><label>Email<input type="email" name="email" value="alexey@example.ru" autocomplete="email"></label><label>Телефон<input type="tel" name="phone" value="+7 999 123-45-67" autocomplete="tel"></label></div></section>
         <section class="profile-card profile-balance"><div class="profile-card__head"><div><h2>Баланс</h2><p>Для дополнительных проверок и функций ИИ</p></div><span data-icon="wallet"></span></div><div class="profile-balance__sum"><span>Доступно сейчас</span><strong data-balance-value>350 ₽</strong></div><button type="button" class="button" data-open-balance><span data-icon="plus"></span>Пополнить баланс</button></section>
@@ -47,17 +42,11 @@
           <article><span data-icon="trophy"></span><div><b>Мини-босс побеждён</b><small>Закрой текущую тему</small></div><em>В процессе</em></article>
           <article><span data-icon="exam"></span><div><b>100 задач</b><small>Решено 68</small></div><em>68 / 100</em></article>
         </div></section>
-        <section class="profile-card profile-card--wide"><div class="profile-card__head"><div><h2>История операций</h2><p>Последние пополнения и списания</p></div><button type="button" class="plain-link-button" id="transactions-load">Показать все</button></div><div style="overflow:auto"><table class="payment-table"><thead><tr><th>Дата</th><th>Операция</th><th>Способ</th><th>Сумма</th><th>Статус</th></tr></thead><tbody id="transactions-body"><tr><td data-label="Дата">09.07.2026</td><td data-label="Операция">Подписка «Базовый»</td><td data-label="Способ">Карта •• 4581</td><td data-label="Сумма">−990 ₽</td><td data-label="Статус" class="payment-status">Выполнено</td></tr><tr><td data-label="Дата">04.07.2026</td><td data-label="Операция">Пополнение баланса</td><td data-label="Способ">Карта •• 4581</td><td data-label="Сумма">+500 ₽</td><td data-label="Статус" class="payment-status">Выполнено</td></tr><tr><td data-label="Дата">02.07.2026</td><td data-label="Операция">Проверка второй части</td><td data-label="Способ">Баланс</td><td data-label="Сумма">−150 ₽</td><td data-label="Статус" class="payment-status">Выполнено</td></tr></tbody></table></div></section>
+        <section class="profile-card profile-card--wide"><div class="profile-card__head"><div><h2>История операций</h2><p>Последние пополнения и списания</p></div><button type="button" class="plain-link-button" id="transactions-load">Показать все</button></div><div style="overflow:auto"><table class="payment-table"><thead><tr><th>Дата</th><th>Операция</th><th>Способ</th><th>Сумма</th><th>Статус</th></tr></thead><tbody id="transactions-body"><tr><td>09.07.2026</td><td>Подписка «Базовый»</td><td>Карта •• 4581</td><td>−990 ₽</td><td class="payment-status">Выполнено</td></tr><tr><td>04.07.2026</td><td>Пополнение баланса</td><td>Карта •• 4581</td><td>+500 ₽</td><td class="payment-status">Выполнено</td></tr><tr><td>02.07.2026</td><td>Проверка второй части</td><td>Баланс</td><td>−150 ₽</td><td class="payment-status">Выполнено</td></tr></tbody></table></div></section>
       </div>
     </div>
   </section>
-  <nav class="mobile-nav" aria-label="Мобильная навигация">
-      <a href="dashboard.html"><span data-icon="home"></span><span>Главная</span></a>
-      <a href="progress.html"><span data-icon="chart"></span><span>Прогресс</span></a>
-      <a class="solve" href="lesson.html"><span data-icon="target"></span><em>Решать</em></a>
-      <a href="mentor.html"><span data-icon="chat"></span><span>Стэди</span></a>
-      <a class="active" href="profile.html"><span data-icon="user"></span><span>Профиль</span></a>
-    </nav>
+  <nav class="mobile-nav" aria-label="Мобильная навигация"><a href="dashboard.html"><span data-icon="home"></span><span>Главная</span></a><a href="progress.html"><span data-icon="chart"></span><span>Прогресс</span></a><a class="solve" href="lesson.html"><span data-icon="target"></span><em>Решать</em></a><a href="mentor.html"><span data-icon="chat"></span><span>Стэди</span></a><a class="active" href="profile.html"><span data-icon="user"></span><span>Профиль</span></a></nav>
 </main>
 <div class="toast" id="toast"></div>
 <script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>

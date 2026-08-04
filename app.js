@@ -15,6 +15,7 @@ const icons = {
   wallet:'<path d="M3 6h15a2 2 0 0 1 2 2v11H5a2 2 0 0 1-2-2V6Z"/><path d="M3 8V5a2 2 0 0 1 2-2h12M15 12h7v4h-7a2 2 0 0 1 0-4Z"/>',
   bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/>',
   user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>',
   settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.09A1.7 1.7 0 0 0 8.6 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1H3v-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6V3h4v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 .6 1h1v4h-.09a1.7 1.7 0 0 0-1.51 1Z"/>',
   logout:'<path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>',
   sparkles:'<path d="m12 3-1.2 3.3L7.5 7.5l3.3 1.2L12 12l1.2-3.3 3.3-1.2-3.3-1.2L12 3ZM5 14l-.8 2.2L2 17l2.2.8L5 20l.8-2.2L8 17l-2.2-.8L5 14ZM19 13l-.7 1.8-1.8.7 1.8.7.7 1.8.7-1.8 1.8-.7-1.8-.7L19 13Z"/>',
@@ -65,11 +66,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
   initStudentShell();
   const authForm = $("[data-auth]");
+  initAuthExperience(authForm);
   authForm?.addEventListener("submit", async event => {
     event.preventDefault();
     const submit = $('button[type="submit"]', authForm);
     const mode = authForm.dataset.auth;
+    if (!validateAuthForm(authForm, mode)) return;
     const formData = Object.fromEntries(new FormData(authForm).entries());
+    delete formData.confirm_password;
+    delete formData.terms;
+    formData.email = String(formData.email || "").trim().toLowerCase();
+    if (formData.name) formData.name = String(formData.name).trim();
     const selectedPlan = new URLSearchParams(location.search).get("plan");
     if (mode === "register" && selectedPlan) formData.plan = selectedPlan;
     clearFormMessage(authForm);
@@ -83,15 +90,17 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       location.href = mode === "register" ? "onboarding.html" : "dashboard.html";
     } catch (error) {
-      showFormMessage(authForm, error.message || "Не удалось выполнить вход", "error");
+      const message = getAuthErrorMessage(error, mode);
+      showFormMessage(authForm, message, "error");
+      applyApiFieldErrors(authForm, error?.details);
     } finally {
       setBusy(submit, false);
     }
   });
   $("#forgot-password")?.addEventListener("click", async () => {
     const email = $('input[name="email"]', authForm)?.value.trim();
-    if (!email) {
-      showFormMessage(authForm, "Сначала укажи email аккаунта", "error");
+    if (!email || !isValidEmail(email)) {
+      setFieldError(authForm, "email", !email ? "Укажи email аккаунта" : "Проверь формат email");
       return;
     }
     try {
@@ -114,7 +123,6 @@ window.addEventListener("DOMContentLoaded", () => {
   initMentorPage();
   initExam();
   initDashboard();
-  initProgressPage();
   renderIcons();
 });
 
@@ -135,16 +143,135 @@ function setBusy(button, state) {
 }
 
 function clearFormMessage(form) {
+  const block = $("[data-form-status]", form);
+  if (block) {
+    block.className = "form-message";
+    block.textContent = "";
+    return;
+  }
   $(".form-message", form)?.remove();
 }
 
 function showFormMessage(form, message, type = "error") {
   clearFormMessage(form);
+  const reserved = $("[data-form-status]", form);
+  if (reserved) {
+    reserved.className = `form-message is-visible is-${type}`;
+    reserved.textContent = message;
+    return;
+  }
   const block = document.createElement("div");
   block.className = `form-message is-visible is-${type}`;
   block.setAttribute("role", type === "error" ? "alert" : "status");
   block.textContent = message;
   form.insertBefore(block, $('button[type="submit"]', form));
+}
+
+function initAuthExperience(form) {
+  if (!form) return;
+  $$('[data-password-toggle]', form).forEach(button => button.addEventListener('click', () => {
+    const input = button.closest('.auth-input')?.querySelector('input');
+    if (!input) return;
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    button.textContent = show ? 'Скрыть' : 'Показать';
+    button.setAttribute('aria-label', show ? 'Скрыть пароль' : 'Показать пароль');
+  }));
+
+  $$('input', form).forEach(input => {
+    input.addEventListener('input', () => {
+      clearFieldError(input.closest('.auth-field'));
+      clearFormMessage(form);
+      if (input.name === 'password') updatePasswordStrength(form, input.value);
+    });
+    input.addEventListener('blur', () => validateSingleAuthField(form, input));
+  });
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(value || '').trim());
+}
+
+function setFieldError(form, name, message) {
+  const field = $(`[data-field="${name}"]`, form);
+  if (!field) return;
+  field.classList.add('has-error');
+  const input = $('input', field);
+  input?.setAttribute('aria-invalid', 'true');
+  const error = $('.field-error', field);
+  if (error) error.textContent = message;
+}
+
+function clearFieldError(field) {
+  if (!field) return;
+  field.classList.remove('has-error');
+  $('input', field)?.removeAttribute('aria-invalid');
+  const error = $('.field-error', field);
+  if (error) error.textContent = '';
+}
+
+function validateSingleAuthField(form, input) {
+  const name = input?.name;
+  const value = String(input?.value || '').trim();
+  if (name === 'name' && value.length < 2) setFieldError(form, name, 'Укажи имя — минимум 2 символа');
+  if (name === 'email' && !isValidEmail(value)) setFieldError(form, name, value ? 'Проверь формат email' : 'Укажи email');
+  if (name === 'password' && value.length < 8) setFieldError(form, name, 'Пароль должен содержать минимум 8 символов');
+  if (name === 'confirm_password' && value !== $('input[name="password"]', form)?.value) setFieldError(form, name, 'Пароли не совпадают');
+}
+
+function validateAuthForm(form, mode) {
+  $$('.auth-field', form).forEach(clearFieldError);
+  clearFormMessage(form);
+  let valid = true;
+  const fail = (name, message) => { setFieldError(form, name, message); valid = false; };
+  const email = $('input[name="email"]', form)?.value.trim() || '';
+  const password = $('input[name="password"]', form)?.value || '';
+  if (!isValidEmail(email)) fail('email', email ? 'Проверь формат email' : 'Укажи email');
+  if (password.length < 8) fail('password', 'Пароль должен содержать минимум 8 символов');
+  if (mode === 'register') {
+    const name = $('input[name="name"]', form)?.value.trim() || '';
+    const confirm = $('input[name="confirm_password"]', form)?.value || '';
+    if (name.length < 2) fail('name', 'Укажи имя — минимум 2 символа');
+    if (confirm !== password) fail('confirm_password', 'Пароли не совпадают');
+    if (!$('input[name="terms"]', form)?.checked) fail('terms', 'Нужно принять политику конфиденциальности');
+  }
+  if (!valid) {
+    $('.auth-field.has-error input', form)?.focus();
+    showFormMessage(form, 'Проверь отмеченные поля', 'error');
+  }
+  return valid;
+}
+
+function updatePasswordStrength(form, password) {
+  const meter = $('[data-password-strength]', form);
+  if (!meter) return;
+  let score = 0;
+  if (password.length >= 8) score++;
+  if (/[A-Za-zА-Яа-я]/.test(password) && /\d/.test(password)) score++;
+  if (/[^A-Za-zА-Яа-я0-9]/.test(password)) score++;
+  if (password.length >= 12) score++;
+  meter.dataset.score = String(score);
+  const labels = ['Минимум 8 символов', 'Можно надёжнее', 'Хороший пароль', 'Надёжный пароль', 'Очень надёжный пароль'];
+  const label = $('span', meter);
+  if (label) label.textContent = labels[score];
+}
+
+function getAuthErrorMessage(error, mode) {
+  if (error?.status === 401) return 'Неверный email или пароль. Проверь данные и попробуй ещё раз.';
+  if (error?.status === 409) return 'Аккаунт с таким email уже существует. Попробуй войти.';
+  if (error?.status === 422) return 'Некоторые данные заполнены неверно. Проверь отмеченные поля.';
+  if (error?.status === 429) return 'Слишком много попыток. Подожди немного и повтори вход.';
+  if (error?.status === 0) return 'Нет соединения с сервером. Проверь интернет и попробуй снова.';
+  return error?.message || (mode === 'register' ? 'Не удалось создать аккаунт' : 'Не удалось выполнить вход');
+}
+
+function applyApiFieldErrors(form, details) {
+  const errors = details?.errors || details?.detail?.errors;
+  if (!errors || typeof errors !== 'object') return;
+  Object.entries(errors).forEach(([name, value]) => {
+    const message = Array.isArray(value) ? value[0] : value;
+    if (typeof message === 'string') setFieldError(form, name, message);
+  });
 }
 
 function initFeaturePills() {
@@ -222,16 +349,15 @@ function initStudentShell() {
     : page === "lesson.html" ? "lesson"
     : page === "exam.html" ? "exam"
     : page === "mentor.html" ? "mentor"
-    : page === "progress.html" ? "progress"
     : page === "profile.html" ? (location.hash === "#awards" ? "awards" : "profile")
     : "dashboard";
   const links = [
-    ["dashboard", "dashboard.html", "home", "Главная"],
+    ["dashboard", "dashboard.html", "home", "Сегодня"],
     ["map", "map.html", "route", "Карта знаний"],
     ["lesson", "lesson.html", "target", "Тренировка"],
     ["exam", "exam.html", "exam", "Пробный экзамен"],
     ["mentor", "mentor.html", "chat", "ИИ-наставник"],
-    ["progress", "progress.html", "chart", "Твой прогресс"],
+    ["progress", "dashboard.html#stats", "chart", "Твой прогресс"],
     ["awards", "profile.html#awards", "trophy", "Достижения"],
     ["profile", "profile.html", "user", "Профиль"]
   ];
@@ -246,8 +372,8 @@ function initStudentShell() {
     <a class="app-profile${active === "profile" ? " active" : ""}" href="profile.html"><span>АА</span><div><b>Алексей</b><small>Уровень 12</small></div><span data-icon="arrow"></span></a>`;
   const mobile = $(".mobile-nav", app);
   if (mobile) mobile.innerHTML = `
-    <a class="${active === "dashboard" ? "active" : ""}" href="dashboard.html"><span data-icon="home"></span><span>Главная</span></a>
-    <a class="${active === "progress" ? "active" : ""}" href="progress.html"><span data-icon="chart"></span><span>Прогресс</span></a>
+    <a class="${active === "dashboard" ? "active" : ""}" href="dashboard.html"><span data-icon="home"></span><span>Сегодня</span></a>
+    <a class="${active === "map" ? "active" : ""}" href="map.html"><span data-icon="route"></span><span>Карта</span></a>
     <a class="solve ${active === "lesson" ? "active" : ""}" href="lesson.html"><span data-icon="target"></span><em>Решать</em></a>
     <a class="${active === "mentor" ? "active" : ""}" href="mentor.html"><span data-icon="chat"></span><span>Стэди</span></a>
     <a class="${active === "profile" || active === "awards" ? "active" : ""}" href="profile.html"><span data-icon="user"></span><span>Профиль</span></a>`;
@@ -363,101 +489,218 @@ function hydrateDiagnosticResult(result) {
   setText("#diagnostic-pace", result.recommended_pace);
 }
 
-function initLesson() {
-  const input=$("#lesson-answer"), check=$("#answer-check"), hint=$("#hint-button");
-  if (!input || !check) return;
-  let taskId = $(".student-app")?.dataset.taskId || "demo-task";
-  input.addEventListener("input", () => { check.disabled=!input.value.trim(); $("#lesson-answer-wrap").classList.remove("has-error"); $("#answer-error").classList.add("hidden"); });
-  check.addEventListener("click", async () => {
-    setBusy(check, true);
-    try {
-      if (api?.isConfigured) {
-        const result = await api.missions.submitAnswer(taskId, {
-          answer: input.value.trim(),
-          elapsed_seconds: Number($("[data-elapsed-seconds]")?.dataset.elapsedSeconds || 0)
-        });
-        if (result?.correct) {
-          $("#lesson-answer-wrap").classList.remove("has-error");
-          $("#answer-error").classList.add("hidden");
-          $("#error-message").classList.add("hidden");
-          showToast(result.message || "Верно! Миссия продолжается");
-        } else {
-          $("#lesson-answer-wrap").classList.add("has-error");
-          $("#answer-error").classList.remove("hidden");
-          $("#error-message").classList.remove("hidden");
-          const text = $("#error-message p");
-          if (text && result?.explanation) text.textContent = result.explanation;
-        }
-      } else {
-        $("#lesson-answer-wrap").classList.add("has-error");
-        $("#answer-error").classList.remove("hidden");
-        $("#error-message").classList.remove("hidden");
-      }
-    } catch (error) {
-      showToast(error.message);
-    } finally {
-      setBusy(check, false);
-    }
-  });
-  const showHint=async()=>{
-    $("#hint-message").classList.remove("hidden");
-    if (!api?.isConfigured) return;
-    try {
-      const result = await api.missions.hint(taskId);
-      const text = $("#hint-message p");
-      if (text && result?.hint) text.textContent = result.hint;
-    } catch (error) {
-      showToast(error.message);
-    }
+async function initLesson() {
+  const shell = $("[data-task-dataset]");
+  const input = $("#lesson-answer");
+  const extendedInput = $("#lesson-extended-answer");
+  const check = $("#answer-check");
+  if (!shell || !input || !extendedInput || !check) return;
+
+  const storageKey = "stedy-ege-89892516-progress";
+  const saved = readStoredObject(storageKey);
+  let tasks = [];
+  let currentIndex = Math.max(0, Number(new URLSearchParams(location.search).get("task") || saved.current || 1) - 1);
+  let hasRendered = false;
+
+  const feedback = $("#lesson-feedback");
+  const solution = $("#lesson-solution");
+  const drawer = $("#lesson-task-drawer");
+
+  const currentTask = () => tasks[currentIndex];
+  const currentValue = () => currentTask()?.type === "extended" ? extendedInput.value.trim() : input.value.trim();
+
+  const saveProgress = () => {
+    const task = currentTask();
+    if (!task) return;
+    saved.current = currentIndex + 1;
+    saved.answers ||= {};
+    saved.answers[task.id] ||= {};
+    saved.answers[task.id].value = currentValue();
+    try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch (_) {}
   };
-  hint?.addEventListener("click", showHint); $$('[data-hint]').forEach(btn=>btn.addEventListener("click",showHint));
+
+  const updateSavedState = (message = "Ответ не сохранён") => setText("#lesson-saved-state", message);
+
+  const updateNavState = () => {
+    $$("#lesson-task-nav button").forEach((button, index) => {
+      const state = saved.answers?.[tasks[index]?.id];
+      button.classList.toggle("active", index === currentIndex);
+      button.classList.toggle("is-correct", state?.correct === true);
+      button.classList.toggle("is-attempted", Boolean(state?.value) && state?.correct !== true);
+      button.setAttribute("aria-current", index === currentIndex ? "step" : "false");
+    });
+  };
+
+  const renderTask = index => {
+    if (!tasks.length) return;
+    if (hasRendered) saveProgress();
+    currentIndex = Math.min(Math.max(index, 0), tasks.length - 1);
+    const task = currentTask();
+    const taskState = saved.answers?.[task.id] || {};
+    const isExtended = task.type === "extended";
+
+    setText("#lesson-task-number", `Задание ${task.number}`);
+    setText("#lesson-task-type", isExtended ? "Развёрнутое решение" : "Краткий ответ");
+    setText("#lesson-topic", task.topic);
+    setText("#lesson-progress-label", `${task.number} из ${tasks.length}`);
+    $("#lesson-progress-bar").style.width = `${(task.number / tasks.length) * 100}%`;
+    $("#lesson-question").innerHTML = task.question_html || `<p>${escapeHtml(task.question)}</p>`;
+
+    input.classList.toggle("hidden", isExtended);
+    input.parentElement.classList.toggle("hidden", isExtended);
+    extendedInput.classList.toggle("hidden", !isExtended);
+    input.value = isExtended ? "" : (taskState.value || "");
+    extendedInput.value = isExtended ? (taskState.value || "") : "";
+    setText("#lesson-answer-label", isExtended ? "Твоё решение" : "Твой ответ");
+    input.placeholder = "Введи число или выражение";
+    check.textContent = isExtended ? "Сохранить решение" : "Проверить ответ";
+    check.disabled = !currentValue();
+    $("#lesson-answer-wrap").classList.remove("has-error", "has-success");
+    feedback.className = "lesson-feedback hidden";
+    feedback.textContent = "";
+    $("#hint-message").classList.add("hidden");
+    $("#error-message").classList.add("hidden");
+    solution.classList.add("hidden");
+    $("#lesson-solution-content").innerHTML = task.solution_html || `<p>${escapeHtml(task.solution)}</p>`;
+    $("#solution-reveal").textContent = "Показать разбор";
+    $("#lesson-prev").disabled = currentIndex === 0;
+    $("#lesson-next").disabled = currentIndex === tasks.length - 1;
+    updateSavedState(taskState.value ? (taskState.correct ? "Ответ верный" : "Черновик сохранён") : "Ответ не сохранён");
+    updateNavState();
+    saved.current = currentIndex + 1;
+    try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch (_) {}
+    history.replaceState(null, "", `${location.pathname}?task=${task.number}`);
+    hasRendered = true;
+    window.scrollTo({top: 0, behavior: "smooth"});
+  };
+
+  const showHint = () => {
+    const task = currentTask();
+    if (!task) return;
+    $("#hint-message p").textContent = `Определи ключевую связь в теме «${task.topic}». Выпиши известные величины отдельно и сделай только один следующий шаг — без попытки решить всё сразу.`;
+    $("#hint-message").classList.remove("hidden");
+    $("#hint-message").scrollIntoView({behavior: "smooth", block: "nearest"});
+  };
+
+  const revealSolution = () => {
+    if (!currentValue()) {
+      showToast("Сначала запиши свою попытку — так разбор будет полезнее");
+      (currentTask()?.type === "extended" ? extendedInput : input).focus();
+      return;
+    }
+    const nowHidden = !solution.classList.contains("hidden");
+    solution.classList.toggle("hidden", nowHidden);
+    $("#solution-reveal").textContent = nowHidden ? "Показать разбор" : "Скрыть разбор";
+    if (!nowHidden) solution.scrollIntoView({behavior: "smooth", block: "nearest"});
+  };
+
+  const onInput = () => {
+    check.disabled = !currentValue();
+    $("#lesson-answer-wrap").classList.remove("has-error", "has-success");
+    feedback.className = "lesson-feedback hidden";
+    updateSavedState(currentValue() ? "Черновик изменён" : "Ответ не сохранён");
+  };
+  input.addEventListener("input", onInput);
+  extendedInput.addEventListener("input", onInput);
+
+  check.addEventListener("click", () => {
+    const task = currentTask();
+    if (!task || !currentValue()) return;
+    saved.answers ||= {};
+    saved.answers[task.id] ||= {};
+    saved.answers[task.id].value = currentValue();
+
+    if (task.type === "extended") {
+      saved.answers[task.id].correct = null;
+      feedback.className = "lesson-feedback is-info";
+      feedback.textContent = "Решение сохранено. Его можно сравнить с эталоном или позже отправить ИИ на анализ.";
+      updateSavedState("Решение сохранено");
+      showToast("Решение сохранено");
+    } else if (lessonAnswersMatch(currentValue(), task.short_answer)) {
+      saved.answers[task.id].correct = true;
+      $("#lesson-answer-wrap").classList.add("has-success");
+      feedback.className = "lesson-feedback is-success";
+      feedback.textContent = "Верно. Отличная работа — можно переходить дальше.";
+      $("#error-message").classList.add("hidden");
+      updateSavedState("Ответ верный");
+      showToast("Верно! Ответ сохранён");
+    } else {
+      saved.answers[task.id].correct = false;
+      $("#lesson-answer-wrap").classList.add("has-error");
+      feedback.className = "lesson-feedback is-error";
+      feedback.textContent = "Пока не сходится. Проверь вычисления и формат ответа.";
+      $("#error-message p").textContent = "Сверь исходные данные с условием и проверь последний переход. Если застрял — возьми подсказку или открой разбор.";
+      $("#error-message").classList.remove("hidden");
+      updateSavedState("Попытка сохранена");
+    }
+    try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch (_) {}
+    updateNavState();
+  });
+
+  $("#hint-button")?.addEventListener("click", showHint);
+  $$('[data-hint]').forEach(button => button.addEventListener("click", showHint));
+  $("#solution-reveal")?.addEventListener("click", revealSolution);
+  $("#lesson-prev")?.addEventListener("click", () => renderTask(currentIndex - 1));
+  $("#lesson-next")?.addEventListener("click", () => renderTask(currentIndex + 1));
+  $("#lesson-list-toggle")?.addEventListener("click", () => drawer?.classList.toggle("is-open"));
+  $("#lesson-list-close")?.addEventListener("click", () => drawer?.classList.remove("is-open"));
+
   const uploadButton = $("#solution-upload");
   const uploadInput = $("#solution-file");
   uploadButton?.addEventListener("click", () => uploadInput?.click());
-  uploadInput?.addEventListener("change", async () => {
+  uploadInput?.addEventListener("change", () => {
     const file = uploadInput.files?.[0];
     if (!file) return;
-    if (!api?.isConfigured) {
-      showToast(`Фото «${file.name}» выбрано. После подключения API оно отправится на проверку`);
-      return;
-    }
-    setBusy(uploadButton, true);
-    try {
-      const result = await api.missions.uploadSolution(taskId, file);
-      showToast(result?.message || "Решение загружено и отправлено на проверку");
-    } catch (error) {
-      showToast(error.message);
-    } finally {
-      setBusy(uploadButton, false);
-      uploadInput.value = "";
-    }
+    saved.answers ||= {};
+    saved.answers[currentTask().id] ||= {};
+    saved.answers[currentTask().id].attachment = file.name;
+    try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch (_) {}
+    showToast(`Фото «${file.name}» прикреплено к черновику`);
+    uploadInput.value = "";
   });
-  const send=async()=>{
-    const field=$("#mentor-input");
-    if(!field.value.trim())return;
-    const message=field.value.trim();
-    appendChatMessage($("#mentor-chat"), message, "user-message");
-    field.value="";
-    if (!api?.isConfigured) return;
-    try {
-      const result = await api.mentor.chat(message, { task_id: taskId, page: "lesson" });
-      appendChatMessage($("#mentor-chat"), result?.message || result?.answer || "Я получил сообщение.", "mentor-message");
-    } catch (error) {
-      showToast(error.message);
-    }
-  };
-  $("#mentor-send")?.addEventListener("click",send); $("#mentor-input")?.addEventListener("keydown",e=>{if(e.key==="Enter")send();});
-  if (api?.isConfigured) {
-    api.missions.current().then(mission => {
-      const task = mission?.current_task || mission?.task || mission;
-      if (!task) return;
-      taskId = task.id || taskId;
-      if ($(".student-app")) $(".student-app").dataset.taskId = taskId;
-      setText(".lesson-task h1", task.content || task.question);
-      const lessonTitle = $(".lesson-header>div>span");
-      if (lessonTitle && mission?.title) lessonTitle.textContent = mission.title;
-    }).catch(error => showToast(error.message));
+
+  try {
+    const response = await fetch(shell.dataset.taskDataset, {cache: "no-store"});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    if (!Array.isArray(data.tasks) || !data.tasks.length) throw new Error("В JSON нет заданий");
+    tasks = data.tasks;
+    currentIndex = Math.min(currentIndex, tasks.length - 1);
+    const nav = $("#lesson-task-nav");
+    nav.innerHTML = "";
+    tasks.forEach((task, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = task.number;
+      button.title = task.topic;
+      button.addEventListener("click", () => { renderTask(index); drawer?.classList.remove("is-open"); });
+      nav.appendChild(button);
+    });
+    renderTask(currentIndex);
+  } catch (error) {
+    $("#lesson-question").innerHTML = '<div class="lesson-load-error"><b>Не удалось загрузить задания</b><p>Открой сайт через локальный сервер или проверь файл data/ege-89892516.json.</p><button type="button" onclick="location.reload()">Попробовать снова</button></div>';
+    check.disabled = true;
+    showToast("Не удалось загрузить базу заданий");
   }
+}
+
+function readStoredObject(key) {
+  try { return JSON.parse(localStorage.getItem(key) || "{}") || {}; }
+  catch (_) { return {}; }
+}
+
+function lessonAnswersMatch(given, expected) {
+  const normalize = value => String(value ?? "").trim().toLowerCase().replace(/\s+/g, "").replace(/−/g, "-");
+  const left = normalize(given);
+  const right = normalize(expected);
+  const leftNumber = Number(left.replace(",", "."));
+  const rightNumber = Number(right.replace(",", "."));
+  if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) return Math.abs(leftNumber - rightNumber) < 1e-9;
+  return left === right;
+}
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[character]);
 }
 
 function appendChatMessage(container, text, className) {
@@ -718,15 +961,6 @@ function initProfilePage() {
   });
 }
 
-function initProgressPage() {
-  const page = $("[data-progress-page]");
-  if (!page) return;
-  $$(".progress-period button", page).forEach(button => button.addEventListener("click", () => {
-    $$(".progress-period button", page).forEach(item => item.classList.toggle("active", item === button));
-    showToast(`Показана статистика: ${button.textContent.toLowerCase()}`);
-  }));
-}
-
 function initAchievementSlider() {
   const track = $(".achievement-scroll");
   if (!track || track.closest(".achievement-slider")) return;
@@ -775,54 +1009,154 @@ function initMentorPage() {
   $$("[data-mentor-prompt]").forEach(button => button.addEventListener("click", () => { input.value = button.textContent.trim(); send(); }));
 }
 
-function initExam() {
+async function initExam() {
   const page = $("[data-exam-page]");
   if (!page) return;
   const start = $("#exam-start");
-  let attemptId = null;
-  let currentTaskId = "task-1";
+  const input = $("#exam-answer");
+  const save = $("#exam-save");
+  const feedback = $("#exam-feedback");
+  let tasks = [];
+  let currentIndex = 0;
+  let answers = {};
+  let timerId = null;
+  let secondsLeft = 20 * 60;
+
+  const shuffle = items => {
+    const result = [...items];
+    for (let index = result.length - 1; index > 0; index--) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [result[index], result[randomIndex]] = [result[randomIndex], result[index]];
+    }
+    return result;
+  };
+
+  const saveDraft = () => {
+    const task = tasks[currentIndex];
+    if (task && input) answers[task.id] = input.value.trim();
+  };
+
+  const updateExamNav = () => {
+    $$("#exam-task-nav button").forEach((button, index) => {
+      const task = tasks[index];
+      button.classList.toggle("active", index === currentIndex);
+      button.classList.toggle("is-answered", Boolean(answers[task?.id]));
+      button.setAttribute("aria-current", index === currentIndex ? "step" : "false");
+    });
+  };
+
+  const renderExamTask = index => {
+    if (!tasks.length) return;
+    saveDraft();
+    currentIndex = Math.min(Math.max(index, 0), tasks.length - 1);
+    const task = tasks[currentIndex];
+    setText("#exam-task-number", `Задание ${task.number}`);
+    setText("#exam-task-topic", task.topic);
+    setText("#exam-task-progress", `${currentIndex + 1} из ${tasks.length}`);
+    $("#exam-question").innerHTML = task.question_html || `<p>${escapeHtml(task.question)}</p>`;
+    input.value = answers[task.id] || "";
+    save.disabled = !input.value.trim();
+    save.innerHTML = currentIndex === tasks.length - 1
+      ? 'Завершить пробник <span data-icon="check"></span>'
+      : 'Сохранить и далее <span data-icon="arrow"></span>';
+    renderIcons(save);
+    $("#exam-prev").disabled = currentIndex === 0;
+    feedback.className = "lesson-feedback hidden";
+    feedback.textContent = "";
+    updateExamNav();
+    input.focus();
+  };
+
+  const finishExam = () => {
+    saveDraft();
+    clearInterval(timerId);
+    const score = tasks.reduce((total, task) => total + Number(lessonAnswersMatch(answers[task.id], task.short_answer)), 0);
+    $(".exam-workspace")?.classList.add("hidden");
+    $("#exam-result")?.classList.remove("hidden");
+    setText("#exam-result-title", `${score} из ${tasks.length} — ${score === 3 ? "отличный результат" : score === 2 ? "хороший темп" : "есть что повторить"}`);
+    setText("#exam-result-copy", score === 3
+      ? "Все ответы верные. Можно пройти новую случайную подборку."
+      : "Посмотри правильные ответы и попробуй ещё раз с новой подборкой.");
+    const resultList = $("#exam-result-tasks");
+    resultList.innerHTML = "";
+    tasks.forEach((task, index) => {
+      const correct = lessonAnswersMatch(answers[task.id], task.short_answer);
+      const row = document.createElement("div");
+      row.className = correct ? "is-correct" : "is-wrong";
+      const number = document.createElement("span");
+      number.textContent = String(index + 1);
+      const copy = document.createElement("div");
+      const title = document.createElement("b");
+      title.textContent = task.topic;
+      const detail = document.createElement("small");
+      detail.textContent = correct ? `Верно: ${task.short_answer}` : `Твой ответ: ${answers[task.id] || "—"} · Верный: ${task.short_answer}`;
+      copy.append(title, detail);
+      row.append(number, copy);
+      resultList.appendChild(row);
+    });
+    window.scrollTo({top: 0, behavior: "smooth"});
+  };
+
+  const startTimer = () => {
+    clearInterval(timerId);
+    secondsLeft = 20 * 60;
+    const draw = () => {
+      const minutes = String(Math.floor(secondsLeft / 60)).padStart(2, "0");
+      const seconds = String(secondsLeft % 60).padStart(2, "0");
+      setText("#exam-timer", `${minutes}:${seconds}`);
+      if (secondsLeft <= 0) finishExam();
+      secondsLeft--;
+    };
+    draw();
+    timerId = setInterval(draw, 1000);
+  };
+
   start?.addEventListener("click", async () => {
     setBusy(start, true);
     try {
-      if (api?.isConfigured) {
-        const result = await api.exams.start(page.dataset.examId || "ege-math-demo-04");
-        attemptId = result?.attempt_id || result?.id;
-        currentTaskId = result?.current_task?.id || currentTaskId;
-      }
+      const response = await fetch(page.dataset.taskDataset, {cache: "no-store"});
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      const pool = data.tasks.filter(task => task.type === "short");
+      if (pool.length < 3) throw new Error("Недостаточно заданий для пробника");
+      tasks = shuffle(pool).slice(0, 3);
+      answers = {};
+      currentIndex = 0;
+      const nav = $("#exam-task-nav");
+      nav.innerHTML = "";
+      tasks.forEach((task, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = String(index + 1);
+        button.title = task.topic;
+        button.addEventListener("click", () => renderExamTask(index));
+        nav.appendChild(button);
+      });
       $(".exam-overview")?.classList.add("hidden");
       $(".exam-workspace")?.classList.remove("hidden");
-      $("#exam-answer")?.focus();
-      showToast("Пробный экзамен начат. Ответы сохраняются автоматически");
+      renderExamTask(0);
+      startTimer();
+      showToast("Случайная подборка из трёх заданий готова");
     } catch (error) {
-      showToast(error.message);
+      showToast("Не удалось загрузить задания. Попробуй обновить страницу");
     } finally {
       setBusy(start, false);
     }
   });
-  $$(".exam-task-nav button").forEach((button, index) => button.addEventListener("click", () => {
-    $$(".exam-task-nav button").forEach(item => item.classList.toggle("active", item === button));
-    setText("#exam-task-number", `Задание ${index + 1}`);
-    setText("#exam-task-progress", `${index + 1} из 19`);
-    currentTaskId = button.dataset.taskId || `task-${index + 1}`;
-  }));
-  $("#exam-answer")?.addEventListener("input", event => {
-    const save = $("#exam-save");
-    if (save) save.disabled = !event.target.value.trim();
+  input?.addEventListener("input", event => {
+    if (tasks[currentIndex]) answers[tasks[currentIndex].id] = event.target.value.trim();
+    save.disabled = !event.target.value.trim();
+    feedback.className = "lesson-feedback hidden";
+    updateExamNav();
   });
-  $("#exam-save")?.addEventListener("click", async () => {
-    const save = $("#exam-save");
-    setBusy(save, true);
-    try {
-      if (api?.isConfigured && attemptId) {
-        await api.exams.saveAnswer(attemptId, currentTaskId, {answer: $("#exam-answer").value.trim()});
-      }
-      showToast("Ответ сохранён. Можно перейти к следующему заданию");
-    } catch (error) {
-      showToast(error.message);
-    } finally {
-      setBusy(save, false);
-    }
+  save?.addEventListener("click", () => {
+    saveDraft();
+    updateExamNav();
+    if (currentIndex === tasks.length - 1) finishExam();
+    else renderExamTask(currentIndex + 1);
   });
+  $("#exam-prev")?.addEventListener("click", () => renderExamTask(currentIndex - 1));
+  $("#exam-restart")?.addEventListener("click", () => location.reload());
 }
 
 function renderTransactions(items) {
@@ -838,11 +1172,9 @@ function renderTransactions(items) {
       item.amount_label || `${Number(item.amount || 0).toLocaleString("ru-RU")} ₽`,
       item.status_label || item.status || "Выполнено"
     ];
-    const labels = ["Дата", "Операция", "Способ", "Сумма", "Статус"];
     values.forEach((value, index) => {
       const cell = document.createElement("td");
       cell.textContent = value;
-      cell.dataset.label = labels[index];
       if (index === 4) cell.className = "payment-status";
       row.appendChild(cell);
     });

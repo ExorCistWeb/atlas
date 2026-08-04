@@ -9,6 +9,7 @@
   <title>Стэди — персональный путь к нужному баллу</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="steady.css">
+  <link rel="stylesheet" href="fixes.css">
 </head>
 <body class="steady-home">
   <div class="loading-screen" aria-hidden="true">
@@ -53,12 +54,8 @@
           <div class="hero__note"><span data-icon="check"></span> Первые 3 дня бесплатно <i></i> Без привязки карты</div>
         </div>
 
-        <div class="mission-demo mission-demo--image" aria-label="Пример сегодняшней миссии">
-          <div class="mission-demo__glow" aria-hidden="true"></div>
-          <img class="mission-demo__image" src="steady-mission-card-transparent.png" alt="Интерфейс сегодняшней миссии: время, задачи, опыт, прогресс и прогноз результата ЕГЭ">
-          <div class="hero-callout hero-callout--one"><b>находит<br>пробелы</b><span>→</span></div>
-          <div class="hero-callout hero-callout--two"><b>показывает<br>динамику</b><span>→</span></div>
-          <div class="hero-callout hero-callout--three"><b>ведёт<br>к цели</b><span>→</span></div>
+        <div class="mission-demo mission-demo--visual" aria-label="Пример сегодняшней миссии">
+          <img class="mission-demo__image" src="assets/hero-mission-card-transparent.png" alt="Сегодняшняя миссия: находит пробелы, показывает динамику и ведёт к цели">
         </div>
       </div>
 
@@ -96,23 +93,14 @@
 
     <section class="steady-section knowledge-showcase" id="knowledge">
       <div class="container knowledge-showcase__grid">
-        <div class="knowledge-showcase__map">
-          <div class="block-head">
-            <div><span class="section-kicker section-kicker--light">Главная особенность</span><h2>Карта знаний</h2></div>
-            <a href="map.html">Открыть карту <span data-icon="arrow"></span></a>
+        <a class="knowledge-showcase__map knowledge-map-card" href="map.html" aria-label="Открыть карту знаний">
+          <div class="knowledge-map-card__content">
+            <span class="section-kicker section-kicker--light">Главная особенность</span>
+            <h2>Карта знаний</h2>
+            <p>Увидь сильные темы, найди пробелы и пойми, что даст больше баллов.</p>
+            <span class="knowledge-map-card__button">Открыть карту <span data-icon="arrow"></span></span>
           </div>
-          <svg class="topic-lines" viewBox="0 0 800 370" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M90 185 L260 90 L430 150 L610 76 M260 90 L355 290 M430 150 L355 290 M355 290 L610 282 M610 76 L710 190 L610 282"/>
-            <path class="topic-lines__active" d="M90 185 L260 90 L430 150 L355 290 L610 282"/>
-          </svg>
-          <button class="topic-pill is-green" type="button" style="--x:8%;--y:46%">Проценты <b>✓</b></button>
-          <button class="topic-pill is-green" type="button" style="--x:25%;--y:15%">Функции <b>✓</b></button>
-          <button class="topic-pill is-yellow" type="button" style="--x:49%;--y:33%">Подобие <b>58%</b></button>
-          <button class="topic-pill is-red" type="button" style="--x:69%;--y:10%">Геометрия <b>34%</b></button>
-          <button class="topic-pill is-yellow" type="button" style="--x:40%;--y:75%">Вероятность <b>64%</b></button>
-          <button class="topic-pill is-muted" type="button" style="--x:72%;--y:74%">Параметры <b>26%</b></button>
-          <div class="knowledge-impact">Закрой «Подобие» — откроются ещё <strong>5 тем</strong></div>
-        </div>
+        </a>
 
         <aside class="today-mission">
           <div class="today-mission__head"><div><span class="section-kicker section-kicker--light">Сегодня</span><h2>Твоя миссия</h2></div><span>ϟ</span></div>
@@ -196,10 +184,10 @@
     <section class="steady-section audience-section">
       <div class="container">
         <div class="steady-section__head"><div><span class="section-kicker section-kicker--light">Для кого</span><h2>Стэди подстраивается под старт</h2></div></div>
-        <div class="audience-grid">
-          <article><span data-icon="route"></span><div><h3>Не знаешь, с чего начать</h3><p>Диагностика найдёт точку старта и первый приоритет.</p></div></article>
-          <article><span data-icon="clock"></span><div><h3>Не хватает регулярности</h3><p>Короткие миссии помогают не выпадать из подготовки.</p></div></article>
-          <article><span data-icon="target"></span><div><h3>Хочешь 80–90+</h3><p>Маршрут покажет темы с максимальным влиянием на балл.</p></div></article>
+        <div class="audience-grid audience-grid--roles">
+          <article><span data-icon="trophy"></span><div><h3>Выпускникам</h3><p>Персональный AI-наставник, игровой формат и минимум скучной теории.</p></div></article>
+          <article><span data-icon="user"></span><div><h3>Родителям</h3><p>Понятный прогресс, реальная аналитика и без необходимости постоянно контролировать ребёнка.</p></div></article>
+          <article><span data-icon="chart"></span><div><h3>Учителям</h3><p>Статистика класса, темы требующие внимания и удобная аналитика без ручной проверки.</p></div></article>
         </div>
       </div>
     </section>
@@ -254,10 +242,7 @@
           <a class="button button--primary" href="register.html">Начать бесплатно <span data-icon="arrow"></span></a>
         </div>
         <div class="final-route" aria-label="Путь к 85 баллам">
-          <span><i></i><b>15 минут</b></span>
-          <span><i></i><b>+180 XP</b></span>
-          <span><i></i><b>1 тема</b></span>
-          <strong>85<small>баллов</small></strong>
+          <img class="final-route__image" src="assets/final-growth-graph-transparent.png" alt="График роста до 85 баллов">
         </div>
       </div>
     </section>

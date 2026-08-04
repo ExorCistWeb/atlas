@@ -8,6 +8,7 @@
   <title>Главная — Стэди</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="steady.css">
+  <link rel="stylesheet" href="fixes.css">
 </head>
 <body class="steady-app-body">
   <main class="student-app" data-dashboard>
@@ -66,6 +67,7 @@
               </div>
               <div class="dash-mission__progress"><span><i id="mission-progress" style="width:43%"></i></span><b id="mission-progress-label">43%</b></div>
               <a class="button button--primary" href="lesson.html">Продолжить миссию <span data-icon="arrow"></span></a>
+              <div class="dash-mission__benefits"><span data-icon="target"></span><b>Находит пробелы</b><span data-icon="chart"></span><b>Показывает динамику</b><span data-icon="route"></span><b>Ведёт к цели</b></div>
             </div>
             <div class="dash-mission__visual" aria-hidden="true">
               <span class="dash-formula">△ABC ∼ △ADE</span>
@@ -91,20 +93,14 @@
             <a href="map.html">Посмотреть связь <span data-icon="arrow"></span></a>
           </article>
 
-          <section class="dash-card dash-map">
-            <div class="dash-card__head"><div><span class="dash-kicker">Твой маршрут</span><h2>Карта знаний</h2></div><a href="map.html">Открыть <span data-icon="arrow"></span></a></div>
-            <svg class="dash-map__lines" viewBox="0 0 690 230" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M70 120 L210 55 L345 105 L510 48 M210 55 L300 190 M345 105 L300 190 M300 190 L520 180 M510 48 L610 117 L520 180"/>
-              <path class="is-active" d="M70 120 L210 55 L345 105 L300 190 L520 180"/>
-            </svg>
-            <button class="dash-node green" type="button" style="--x:5%;--y:42%">Проценты</button>
-            <button class="dash-node green" type="button" style="--x:24%;--y:11%">Функции</button>
-            <button class="dash-node yellow" type="button" style="--x:46%;--y:31%">Подобие</button>
-            <button class="dash-node red" type="button" style="--x:68%;--y:8%">Геометрия</button>
-            <button class="dash-node yellow" type="button" style="--x:37%;--y:77%">Вероятность</button>
-            <button class="dash-node muted" type="button" style="--x:70%;--y:72%">Параметры</button>
-            <div class="dash-map__impact">Подобие влияет ещё на <strong>5 тем</strong></div>
-          </section>
+          <a class="dash-card dash-map dash-map--image" href="map.html" aria-label="Открыть карту знаний">
+            <div class="dash-map__content">
+              <span class="dash-kicker">Твой маршрут</span>
+              <h2>Карта знаний</h2>
+              <p>Посмотри связи между темами и выбери следующий шаг.</p>
+              <span class="dash-map__button">Открыть карту <span data-icon="arrow"></span></span>
+            </div>
+          </a>
 
           <aside class="dash-card dash-ai">
             <div class="dash-ai__head"><span data-icon="sparkles"></span><div><b>Совет Стэди</b><small>На основе 42 ответов</small></div></div>

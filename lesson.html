@@ -1,13 +1,123 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Тренировка — Стэди</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="steady.css"></head><body class="steady-app-body">
-<main class="student-app" data-task-id="demo-similarity-001"><aside class="app-sidebar" aria-label="Навигация кабинета"><a class="logo logo--inverse" href="index.html"><span class="logo__mark">С</span><span>Стэди</span></a><nav aria-label="Разделы кабинета"><a href="dashboard.html"><span class="sidebar-icon" data-icon="home"></span><span>Главная</span></a><a href="map.html"><span class="sidebar-icon" data-icon="route"></span><span>Мой путь</span></a><a class="active" href="lesson.html"><span class="sidebar-icon" data-icon="target"></span><span>Тренировка</span></a><a href="diagnostic.html"><span class="sidebar-icon" data-icon="exam"></span><span>Пробный экзамен</span></a><a href="#mentor"><span class="sidebar-icon" data-icon="chat"></span><span>ИИ-наставник</span></a><a href="progress.html"><span class="sidebar-icon" data-icon="chart"></span><span>Твой прогресс</span></a><a href="profile.html#awards"><span class="sidebar-icon" data-icon="trophy"></span><span>Достижения</span></a></nav><div class="app-plan"><span data-icon="sparkles"></span><div><b>Базовый</b><small>24 дня осталось</small></div><span>›</span></div><a class="app-profile" href="profile.html"><span>А</span><div><b>Алексей</b><small>Уровень 12</small></div><span>⌄</span></a></aside>
-<section class="app-content"><header class="app-top"><div><a class="mobile-app-logo" href="index.html">{</a><span>Тренировка</span></div><div class="app-top__actions"><button type="button" class="streak"><span data-icon="flame"></span> 8 дней</button><button type="button" data-balance><span data-icon="wallet"></span><span data-balance-value>350 ₽</span></button><button type="button" data-notifications aria-label="Уведомления"><span data-icon="bell"></span><i></i></button><button type="button" class="top-avatar" data-profile-toggle aria-label="Открыть меню профиля">А</button></div></header>
-<div class="lesson-page"><div class="lesson-header"><a href="dashboard.html">←</a><div><span>Подобие треугольников</span><div><i style="width:43%"></i></div><b>3 из 7</b></div><button type="button">•••</button></div><div class="lesson-grid"><section class="lesson-task"><div class="task-meta"><span>Задание 6</span><span>Средняя сложность</span></div><h1>Треугольники ABC и ADE подобны. AB = 12, AD = 8, DE = 6. Найдите длину стороны BC.</h1><div class="lesson-geometry"><div class="similar-tri"></div><span class="lg-a">A</span><span class="lg-b">B</span><span class="lg-c">C</span><span class="lg-d">D</span><span class="lg-e">E</span><small class="lg-12">12</small><small class="lg-8">8</small><small class="lg-6">6</small></div><div class="lesson-answer" id="lesson-answer-wrap"><label>Твой ответ<span class="answer-input"><input type="text" id="lesson-answer" placeholder="Введи число" inputmode="decimal"><span>см</span></span></label><div class="answer-error hidden" id="answer-error">× Ответ пока не сходится. Давай найдём сложный шаг.</div></div><div class="lesson-tools"><button type="button" id="hint-button"><span data-icon="bulb"></span>Небольшая подсказка</button><button type="button" id="solution-upload"><span data-icon="upload"></span>Загрузить решение</button><input class="hidden" type="file" id="solution-file" accept="image/*" capture="environment"><button type="button" class="button button--primary" id="answer-check" disabled>Проверить ответ</button></div></section>
-<aside class="mentor-panel" aria-label="ИИ-наставник" id="mentor"><div class="mentor-head"><div><span data-icon="sparkles"></span><div><b>Стэди</b><small><i></i> рядом во время задачи</small></div></div><button type="button" aria-label="Свернуть чат"><span data-icon="close"></span></button></div><div class="mentor-chat" id="mentor-chat"><div class="mentor-intro"><span>✦</span><p>Решай самостоятельно. Я подключусь, если понадобится подсказка или захочешь проверить ход мысли.</p></div><div class="mentor-message hidden" id="hint-message"><p>Сначала определи коэффициент подобия. Во сколько раз сторона AB больше соответствующей стороны AD?</p><div><button type="button">Покажи на рисунке</button><button type="button">Объясни проще</button></div></div><div class="mentor-message mentor-message--error hidden" id="error-message"><span>Нашёл место ошибки</span><p>Стороны в пропорции стоят в разном порядке. Если AB соответствует AD, то BC должна соответствовать DE.</p><button type="button">Составить пропорцию вместе →</button></div></div><div class="quick-prompts"><button type="button" data-hint>Я не знаю, с чего начать</button><button type="button" data-hint>Напомни формулу</button></div><div class="mentor-input"><button type="button">♩</button><input type="text" id="mentor-input" placeholder="Спроси о задаче..."><button type="button" id="mentor-send"><span data-icon="send"></span></button></div><small class="mentor-note">ИИ может ошибаться. Важные ответы проверяются по базе решений.</small></aside></div></div></section>
-<nav class="mobile-nav" aria-label="Мобильная навигация">
-      <a href="dashboard.html"><span data-icon="home"></span><span>Главная</span></a>
-      <a href="progress.html"><span data-icon="chart"></span><span>Прогресс</span></a>
-      <a class="solve active" href="lesson.html"><span data-icon="target"></span><em>Решать</em></a>
-      <a href="mentor.html"><span data-icon="chat"></span><span>Стэди</span></a>
-      <a href="profile.html"><span data-icon="user"></span><span>Профиль</span></a>
-    </nav></main>
-<div class="toast" id="toast"></div><script src="config.js"></script><script src="api.js"></script><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#100526">
+  <meta name="description" content="Тренировка по актуальному варианту профильной математики в Стэди">
+  <title>Тренировка — Стэди</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="steady.css">
+  <link rel="stylesheet" href="fixes.css">
+</head>
+<body class="steady-app-body">
+<main class="student-app" data-task-dataset="data/ege-89892516.json">
+  <aside class="app-sidebar" aria-label="Навигация кабинета"></aside>
+
+  <section class="app-content">
+    <header class="app-top">
+      <div><a class="mobile-app-logo" href="index.html">{</a><span>Тренировка</span></div>
+      <div class="app-top__actions">
+        <button type="button" class="streak"><span data-icon="flame"></span> 12 дней</button>
+        <button type="button" data-balance><span data-icon="wallet"></span><span data-balance-value>350 ₽</span></button>
+        <button type="button" data-notifications aria-label="Уведомления"><span data-icon="bell"></span><i></i></button>
+        <button type="button" class="top-avatar" data-profile-toggle aria-label="Открыть меню профиля">АА</button>
+      </div>
+    </header>
+
+    <div class="lesson-page lesson-page--variant">
+      <div class="lesson-header lesson-header--variant">
+        <a href="dashboard.html" class="lesson-back" aria-label="Вернуться в кабинет">←</a>
+        <div class="lesson-progress">
+          <span id="lesson-topic">Профильная математика</span>
+          <div aria-hidden="true"><i id="lesson-progress-bar" style="width:5.26%"></i></div>
+          <b id="lesson-progress-label">1 из 19</b>
+        </div>
+        <button type="button" id="lesson-list-toggle" aria-label="Показать список заданий">•••</button>
+      </div>
+
+      <div class="lesson-task-drawer" id="lesson-task-drawer" aria-label="Все задания">
+        <div class="lesson-task-drawer__head">
+          <div><span>Вариант 89892516</span><b>Выбери задание</b></div>
+          <button type="button" id="lesson-list-close" aria-label="Закрыть список">×</button>
+        </div>
+        <div class="lesson-task-nav" id="lesson-task-nav"></div>
+        <small>1–12 — краткий ответ · 13–19 — развёрнутое решение</small>
+      </div>
+
+      <div class="lesson-grid lesson-grid--variant">
+        <section class="lesson-task lesson-task--variant" aria-live="polite">
+          <div class="lesson-source-row">
+            <div class="task-meta">
+              <span id="lesson-task-number">Задание 1</span>
+              <span id="lesson-task-type">Краткий ответ</span>
+            </div>
+          </div>
+
+          <div class="lesson-question" id="lesson-question">
+            <div class="task-skeleton"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="lesson-answer" id="lesson-answer-wrap">
+            <label id="lesson-answer-label" for="lesson-answer">Твой ответ</label>
+            <span class="answer-input">
+              <input type="text" id="lesson-answer" placeholder="Введи число" inputmode="decimal" autocomplete="off">
+            </span>
+            <textarea class="hidden" id="lesson-extended-answer" rows="7" placeholder="Запиши ход решения. Можно использовать формулы и пояснения."></textarea>
+            <div class="lesson-feedback hidden" id="lesson-feedback" role="status"></div>
+          </div>
+
+          <div class="lesson-tools lesson-tools--variant">
+            <button type="button" id="hint-button"><span data-icon="bulb"></span> Небольшая подсказка</button>
+            <button type="button" id="solution-upload"><span data-icon="upload"></span> Загрузить решение</button>
+            <input class="hidden" type="file" id="solution-file" accept="image/*" capture="environment">
+            <button type="button" class="button button--primary" id="answer-check" disabled>Проверить ответ</button>
+          </div>
+
+          <div class="lesson-step-nav">
+            <button type="button" id="lesson-prev"><span>←</span><small>Предыдущее</small></button>
+            <div><span id="lesson-saved-state">Ответ не сохранён</span><small>Прогресс хранится на этом устройстве</small></div>
+            <button type="button" id="lesson-next"><small>Следующее</small><span>→</span></button>
+          </div>
+        </section>
+
+        <aside class="mentor-panel mentor-panel--variant" aria-label="Помощник по заданию" id="mentor">
+          <div class="mentor-head">
+            <div><span data-icon="sparkles"></span><div><b>Стэди</b><small><i></i> рядом во время задачи</small></div></div>
+            <button type="button" aria-label="Свернуть помощника"><span data-icon="close"></span></button>
+          </div>
+          <div class="mentor-chat" id="mentor-chat">
+            <div class="mentor-intro">
+              <span>✦</span>
+              <p>Решай самостоятельно. Я дам небольшую подсказку или покажу эталонный разбор после попытки.</p>
+            </div>
+            <div class="mentor-message hidden" id="hint-message"><span>Подсказка</span><p></p></div>
+            <div class="mentor-message mentor-message--error hidden" id="error-message"><span>Проверь ещё раз</span><p></p></div>
+            <div class="mentor-solution hidden" id="lesson-solution">
+              <div><span data-icon="check"></span><b>Эталонное решение</b></div>
+              <div id="lesson-solution-content"></div>
+            </div>
+          </div>
+          <div class="quick-prompts">
+            <button type="button" data-hint>С чего начать?</button>
+            <button type="button" data-hint>На что обратить внимание?</button>
+            <button type="button" id="solution-reveal">Показать разбор</button>
+          </div>
+          <div class="mentor-input">
+            <input type="text" id="mentor-input" placeholder="ИИ-разбор подключим следующим этапом" disabled>
+            <button type="button" id="mentor-send" disabled aria-label="Отправить"><span data-icon="send"></span></button>
+          </div>
+          <small class="mentor-note">Ответ проверяется по локальной базе варианта. Источник заданий — РЕШУ ЕГЭ.</small>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <nav class="mobile-nav" aria-label="Мобильная навигация"></nav>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

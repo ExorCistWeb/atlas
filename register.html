@@ -1,5 +1,86 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Регистрация — Стэди</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="steady.css"></head><body>
-<main class="auth-page"><a class="auth-back" href="index.html">← На главную</a>
-  <div class="auth-brand"><a class="logo logo--inverse" href="index.html"><span class="logo__mark">С</span><span>Стэди</span></a><div><span class="section-kicker section-kicker--light">Точная подготовка</span><h1>Начни с понимания своей точки старта</h1><p>Пройди диагностику и получи карту знаний, прогноз баллов и первый персональный план.</p><div class="auth-quote"><span>✦</span><div><b>15 заданий вместо сотни</b><span>ИИ адаптирует диагностику после каждого ответа</span></div></div></div><div class="knowledge knowledge--compact"><div class="knowledge__glow knowledge__glow--one"></div><button type="button" class="knowledge-node knowledge-node--green" style="left:25%;top:45%;width:70px;height:70px"><b>88%</b><span>Уравнения</span></button><button type="button" class="knowledge-node knowledge-node--yellow" style="left:52%;top:30%;width:78px;height:78px"><b>58%</b><span>Производная</span></button><button type="button" class="knowledge-node knowledge-node--red" style="left:72%;top:65%;width:82px;height:82px"><b>34%</b><span>Геометрия</span></button></div></div>
-  <div class="auth-form-wrap"><form class="auth-form" data-auth="register"><div><span class="section-kicker">Стэди</span><h2>Создать аккаунт</h2><p>Первый персональный план — бесплатно</p></div><label>Как тебя зовут<input type="text" required name="name" placeholder="Алексей" autocomplete="name"></label><label>Email<input required type="email" name="email" placeholder="name@example.ru" autocomplete="email"></label><label>Пароль<span class="input-password"><input required type="password" name="password" minlength="8" placeholder="Минимум 8 символов" autocomplete="new-password"><span>◉</span></span></label><button class="button button--primary" type="submit">Начать диагностику →</button><div class="auth-divider"><span>или</span></div><button class="button button--secondary" type="button" data-toast="Подключение Яндекс ID будет доступно после интеграции"><span class="yandex">Я</span> Продолжить с Яндекс ID</button><p class="form-bottom">Уже есть аккаунт? <a href="login.html">Войти</a></p><small class="legal">Создавая аккаунт, вы соглашаетесь на обработку данных по <a href="privacy.html">политике конфиденциальности</a>.</small></form></div>
-</main><div class="toast" id="toast"></div><script src="config.js"></script><script src="api.js"></script><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100526">
+  <meta name="api-base-url" content="">
+  <title>Регистрация — Стэди</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="steady.css">
+  <link rel="stylesheet" href="fixes.css">
+</head>
+<body class="steady-auth-body">
+  <main class="auth-page auth-page--register">
+    <a class="auth-back" href="index.html"><span aria-hidden="true">←</span> На главную</a>
+
+    <section class="auth-brand" aria-label="О Стэди">
+      <a class="steady-logo auth-logo" href="index.html" aria-label="Стэди — главная"><span class="steady-logo__mark">{</span><span>СТЭДИ</span></a>
+      <div class="auth-brand__content">
+        <span class="auth-eyebrow">Старт без перегрузки</span>
+        <h1>Собери свой маршрут к нужному баллу</h1>
+        <p>Создай аккаунт, пройди короткую диагностику и получи первый персональный план.</p>
+        <div class="auth-benefits" aria-label="Что будет после регистрации">
+          <span><i data-icon="target"></i><b>Определим текущий уровень</b></span>
+          <span><i data-icon="route"></i><b>Покажем следующий полезный шаг</b></span>
+        </div>
+      </div>
+      <div class="auth-mini-card" aria-hidden="true">
+        <div><span>Первый результат</span><b>15 заданий</b></div>
+        <i><em style="width:38%"></em></i>
+        <small>Диагностика адаптируется после каждого ответа</small>
+      </div>
+    </section>
+
+    <section class="auth-form-wrap">
+      <div class="auth-panel">
+        <a class="steady-logo auth-mobile-logo" href="index.html" aria-label="Стэди — главная"><span class="steady-logo__mark">{</span><span>СТЭДИ</span></a>
+        <header class="auth-panel__head">
+          <span class="section-kicker">Бесплатный старт</span>
+          <h2>Создать аккаунт</h2>
+          <p>Только основные данные — настройку подготовки выполним следующим шагом.</p>
+        </header>
+
+        <form class="auth-form auth-form--modern" data-auth="register" novalidate>
+          <div class="auth-field" data-field="name">
+            <label for="register-name">Как тебя зовут</label>
+            <div class="auth-input"><span data-icon="user"></span><input id="register-name" type="text" required name="name" minlength="2" maxlength="50" placeholder="Алексей" autocomplete="name"></div>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+
+          <div class="auth-field" data-field="email">
+            <label for="register-email">Email</label>
+            <div class="auth-input"><span data-icon="chat"></span><input id="register-email" required type="email" name="email" placeholder="name@example.ru" autocomplete="email" inputmode="email"></div>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+
+          <div class="auth-field" data-field="password">
+            <label for="register-password">Придумай пароль</label>
+            <div class="auth-input"><span data-icon="lock"></span><input id="register-password" required type="password" name="password" minlength="8" placeholder="Минимум 8 символов" autocomplete="new-password"><button class="password-toggle" type="button" data-password-toggle aria-label="Показать пароль">Показать</button></div>
+            <div class="password-strength" data-password-strength aria-label="Надёжность пароля"><i></i><i></i><i></i><i></i><span>Минимум 8 символов</span></div>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+
+          <div class="auth-field" data-field="confirm_password">
+            <label for="register-password-confirm">Повтори пароль</label>
+            <div class="auth-input"><span data-icon="check"></span><input id="register-password-confirm" required type="password" name="confirm_password" minlength="8" placeholder="Ещё раз тот же пароль" autocomplete="new-password"><button class="password-toggle" type="button" data-password-toggle aria-label="Показать пароль">Показать</button></div>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+
+          <div class="auth-field auth-field--terms" data-field="terms">
+            <label class="checkbox auth-checkbox"><input type="checkbox" name="terms" value="1" required><span>Я принимаю <a href="privacy.html">политику конфиденциальности</a></span></label>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-message" data-form-status role="alert" aria-live="polite"></div>
+          <button class="button button--primary auth-submit" type="submit">Создать аккаунт <span data-icon="arrow"></span></button>
+          <p class="auth-security"><span data-icon="check"></span> Регистрация и первый персональный план — бесплатно</p>
+          <p class="form-bottom">Уже есть аккаунт? <a href="login.html">Войти</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>
